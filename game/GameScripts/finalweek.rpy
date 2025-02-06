@@ -97,7 +97,7 @@ label failure_ending:
 
 label taco_bell_ending:
     scene black
-    pov "OMG I GET TO MAKE OUT WITH SAMN"
+    pov "OMG I GET TO MAKE OUT WITH █████ "
 
 label perfect_puppy_ending:
     scene black
