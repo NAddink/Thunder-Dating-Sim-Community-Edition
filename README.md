@@ -1,6 +1,19 @@
-# Thunder-Dating-Sim-Community-Edition
-\
-Thunder Dating Sim is back? Community edition?
+# WELCOME to Thunder Dating Simulator- Community Edition:
+If you're reading this, you've taken interest in *Thunder Dating Simulator*- enough that Noah decided he might actually pursue rebooting the project that was imagined in October 2023.
+<br><br>
+### Thanks for thinking this extremely wack idea is a cool one. Here is some info about the old project:
+- Thunder Dating Simulator is a visual novel type game. That is very dialogue heavy, and played almost exclusively by selecting action/dialogue options.
+- TDS is written in *Ren'Py*, a visual novel engine built on the python programming language. It's actually the same engine that Doki Doki Literature Club used.
+- Since this is literally named the Community Edition, I am ***very*** open to suggestions, comments, ideas. It's not as if I just coded this, so scrapping and changing things doesn't feel like a loss.
+
+Below is the Dialogue document, also made back when I originally did this stuff. It's very barebones.
+
+[Dialogue Document](https://docs.google.com/document/d/10ckp_Utvbeq8JK4584tTMq91LJHOO5WwZh3Eap90syo/edit?usp=sharing)
+
+Lastly, I may end up making a discord server for TDS-CE, let me know if you guys would be interested in that. 
+
+# Below is more detailed information regarding the original TDS:
+There is also a minimal roadmap showing what was accomplished and what would still be missing. So basically just code is there and nothing else. 
 
 # General structure
 ###### In it's current form (subject to change)
