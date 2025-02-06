@@ -33,10 +33,12 @@ define config.version = "1.0"
 define gui.about = _p("""Thunder Dating Simulator was a soul project created by a trio of unnamed individuals.
 
 The idea came one night in Prescott Field, when the trio were simply talking about random things and concieved the idea of creating a GCU visual novel.
-One specialized in art, one in coding, and one in storytelling. The perfect team. 
 
 Thunder Dating Sim was then forgotten about for the entire semester never to be mentioned again. It was thought lost to the void. Now it has been rekindled into a
 beautiful flame.
+
+2025- Thunder Dating Sim was NOT rekindled. It actually is a year and 3 months later and now there's the community edition.
+
 
 We hope it brings you great happiness.
 
