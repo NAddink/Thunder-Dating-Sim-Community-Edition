@@ -4,7 +4,7 @@ If you're reading this, you've taken interest in *Thunder Dating Simulator*- eno
 ### Thanks for thinking this extremely wack idea is a cool one. Here is some info about the old project:
 - Thunder Dating Simulator is a visual novel type game. That is very dialogue heavy, and played almost exclusively by selecting action/dialogue options.
 - TDS is written in *Ren'Py*, a visual novel engine built on the python programming language. It's actually the same engine that Doki Doki Literature Club used.
-- Since this is literally named the Community Edition, I am ***very*** open to suggestions, comments, ideas. It's not as if I just coded this, so scrapping and changing things doesn't feel like a loss.
+- Since this is literally named the Community Edition, I am ***very*** open to suggestions, comments, ideas. It's not as if I just coded this, so scrapping and changing things doesn't feel like a loss. Heck we could redesign the whole thing from scratch, it'll just take a bit more time. 
 
 Below is the Dialogue document, also made back when I originally did this stuff. It's very barebones.
 
@@ -13,7 +13,19 @@ Below is the Dialogue document, also made back when I originally did this stuff.
 Lastly, I may end up making a discord server for TDS-CE, let me know if you guys would be interested in that. 
 
 # Below is more detailed information regarding the original TDS:
+Most of it was gathered from old documents.<br><br>
 There is also a minimal roadmap showing what was accomplished and what would still be missing. So basically just code is there and nothing else. 
+
+# Screenshots
+###### Functional main menu based off halo login
+<img src="https://github.com/user-attachments/assets/88f81a31-9991-4f31-b225-6b91e743601f" alt="drawing" width="500"/>
+
+<hr>
+
+###### Example screen- the image default is a shadowy silhouette of an anime girl, yes I also find this frightening. Most of this is base ren'py. The main part that was actually coded was the structure that would eventually hold dialogue. 
+
+<img src="https://github.com/user-attachments/assets/e0e76a70-62c6-499e-9724-1450fdf0c9d4" alt="drawing" width="500"/>
+
 
 # General structure
 ###### In it's current form (subject to change)
