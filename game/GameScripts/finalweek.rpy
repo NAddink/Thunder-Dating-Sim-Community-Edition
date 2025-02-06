@@ -79,9 +79,9 @@ label failure_ending:
     stop music fadeout 1.0  
     scene black
     pov "Oh no I failed"
-    show blarkin angry with dissolve
-    blarkin "[pov], you are a worthless disgrace"
-    hide blarkin with dissolve
+    show █████  angry with dissolve
+    ████ "[pov], you are a worthless disgrace"
+    hide ████ with dissolve
     with Pause(2)
     
     show puppy normal with dissolve

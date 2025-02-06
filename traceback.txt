@@ -1,22 +1,83 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While running game code:
-  File "game/Base/options.rpy", line 16, in script
-    define config.mouse['default'] = [ ( "gui/cursor-32.png", 0, 0) ]
-TypeError: 'NoneType' object does not support item assignment
+While loading <renpy.display.im.Image object ('puppy normal.webp') at 0x000000000543ed90>:
+  File "game/GameScripts/script.rpy", line 197, in script
+    show puppy normal with easeinleft
+OSError: Couldn't find file 'puppy normal.webp'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/Base/options.rpy", line 16, in script
-    define config.mouse['default'] = [ ( "gui/cursor-32.png", 0, 0) ]
-  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\ast.py", line 2219, in execute
-    self.set()
-  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\ast.py", line 2257, in set
-    base[key] = new
-TypeError: 'NoneType' object does not support item assignment
+  File "game/GameScripts/script.rpy", line 197, in script
+    show puppy normal with easeinleft
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\ast.py", line 1363, in execute
+    renpy.exports.with_statement(trans, paired=paired)
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\exports.py", line 1781, in with_statement
+    return renpy.game.interface.do_with(trans, paired, clear=clear)
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\display\core.py", line 1548, in do_with
+    return self.interact(trans_pause=True,
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\display\core.py", line 2165, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\display\core.py", line 2818, in interact_core
+    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\display\core.py", line 1352, in draw_screen
+    surftree = renpy.display.render.render_screen(
+  File "render.pyx", line 486, in renpy.display.render.render_screen
+  File "render.pyx", line 260, in renpy.display.render.render
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\display\layout.py", line 900, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 260, in renpy.display.render.render
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\display\layout.py", line 900, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 260, in renpy.display.render.render
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\display\layout.py", line 900, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 260, in renpy.display.render.render
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\display\movetransition.py", line 383, in render
+    old_r = renpy.display.render.render(self.old, width, height, st, at)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 260, in renpy.display.render.render
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\display\transform.py", line 957, in render
+    return RenderTransform(self).render(width, height, st, at)
+  File "accelerator.pyx", line 978, in renpy.display.accelerator.RenderTransform.render
+  File "accelerator.pyx", line 413, in renpy.display.accelerator.RenderTransform.render_child
+  File "render.pyx", line 260, in renpy.display.render.render
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\display\layout.py", line 2084, in render
+    cr = renpy.display.render.render(self.child, w, h, st, at)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 260, in renpy.display.render.render
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\display\transform.py", line 957, in render
+    return RenderTransform(self).render(width, height, st, at)
+  File "accelerator.pyx", line 978, in renpy.display.accelerator.RenderTransform.render
+  File "accelerator.pyx", line 413, in renpy.display.accelerator.RenderTransform.render_child
+  File "render.pyx", line 260, in renpy.display.render.render
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\display\image.py", line 513, in render
+    return wrap_render(self.target, width, height, st, at)
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\display\image.py", line 316, in wrap_render
+    rend = render(child, w, h, st, at)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 260, in renpy.display.render.render
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\display\transform.py", line 957, in render
+    return RenderTransform(self).render(width, height, st, at)
+  File "accelerator.pyx", line 978, in renpy.display.accelerator.RenderTransform.render
+  File "accelerator.pyx", line 413, in renpy.display.accelerator.RenderTransform.render_child
+  File "render.pyx", line 260, in renpy.display.render.render
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\display\im.py", line 626, in render
+    return cache.get(self, render=True)
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\display\im.py", line 309, in get
+    surf = image.load()
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\display\im.py", line 761, in load
+    raise e
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\display\im.py", line 711, in load
+    filelike = renpy.loader.load(self.filename, directory="images")
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\loader.py", line 672, in load
+    raise IOError("Couldn't find file '%s'." % name)
+OSError: Couldn't find file 'puppy normal.webp'.
 
 Windows-10-10.0.26100 AMD64
 Ren'Py 8.2.1.24030407
-Thunder Dating Sim 1.0
-Wed Feb  5 21:21:33 2025
+Thunder Dating Sim CE 1.0
+Wed Feb  5 22:50:37 2025

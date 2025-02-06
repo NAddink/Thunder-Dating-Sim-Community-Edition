@@ -33,7 +33,7 @@ label defined:
     define flirty = Character("Thunder", callback=callback)
     define suave = Character("Thunder", callback=callback)
     define aggro = Character("Thunder", callback=callback)
-    define blarkin = Character("Professor Bblarkin", callback=callback)
+    define professor = Character("Professor ██████", callback=callback)
 
 label defaults:
 
@@ -113,62 +113,62 @@ label defaults:
     default current_location = "Class"
 
 
-label blinking_animations:
-    image puppy normal:
-        choice (3.0):
-            "puppy normal.webp"
-        choice:
-            "puppy normal closed.webp"
-            pause 0.1
-            "puppy normal.webp"
-            pause 0.1
-            "puppy normal closed.webp"
-            pause 0.1
-            "puppy normal.webp"
-        pause 1.0
-        repeat
+# label blinking_animations:
+#     image puppy normal:
+#         choice (3.0):
+#             "puppy normal.webp"
+#         choice:
+#             "puppy normal closed.webp"
+#             pause 0.1
+#             "puppy normal.webp"
+#             pause 0.1
+#             "puppy normal closed.webp"
+#             pause 0.1
+#             "puppy normal.webp"
+#         pause 1.0
+#         repeat
 
-    image flirty normal:
-        choice (3.0):
-            "flirty normal.webp"
-        choice:
-            "flirty normal closed.webp"
-            pause 0.1
-            "flirty normal.webp"
-            pause 0.1
-            "flirty normal closed.webp"
-            pause 0.1
-            "flirty normal.webp"
-        pause 1.0
-        repeat
+#     image flirty normal:
+#         choice (3.0):
+#             "flirty normal.webp"
+#         choice:
+#             "flirty normal closed.webp"
+#             pause 0.1
+#             "flirty normal.webp"
+#             pause 0.1
+#             "flirty normal closed.webp"
+#             pause 0.1
+#             "flirty normal.webp"
+#         pause 1.0
+#         repeat
 
-    image suave normal:
-        choice (3.0):
-            "suave normal.webp"
-        choice:
-            "suave normal closed.webp"
-            pause 0.1
-            "suave normal.webp"
-            pause 0.1
-            "suave normal closed.webp"
-            pause 0.1
-            "suave normal.webp"
-        pause 1.0
-        repeat
+#     image suave normal:
+#         choice (3.0):
+#             "suave normal.webp"
+#         choice:
+#             "suave normal closed.webp"
+#             pause 0.1
+#             "suave normal.webp"
+#             pause 0.1
+#             "suave normal closed.webp"
+#             pause 0.1
+#             "suave normal.webp"
+#         pause 1.0
+#         repeat
 
-    image aggro normal:
-        choice (3.0):
-            "aggro normal.webp"
-        choice:
-            "aggro normal closed.webp"
-            pause 0.1
-            "aggro normal.webp"
-            pause 0.1
-            "aggro normal closed.webp"
-            pause 0.1
-            "aggro normal.webp"
-        pause 1.0
-        repeat
+#     image aggro normal:
+#         choice (3.0):
+#             "aggro normal.webp"
+#         choice:
+#             "aggro normal closed.webp"
+#             pause 0.1
+#             "aggro normal.webp"
+#             pause 0.1
+#             "aggro normal closed.webp"
+#             pause 0.1
+#             "aggro normal.webp"
+#         pause 1.0
+#         repeat
 
 label start:
 
@@ -219,14 +219,14 @@ label start:
     pov "Dang I can't stop thinking about Thunder...."
     pov "Maybe I'll see him at lope-a-palooza tonight...."
 
-    show blarkin angry
+    show professor angry
     play sound akward
-    blarkin "[povname]!!! STOP DOZING OFF!!!"
+    professor "[povname]!!! STOP DOZING OFF!!!"
 
 
-    show blarkin normal
-    blarkin "I'm sorry [povname], that was very unprofessional. I shouldn't have yelled."
-    blarkin "Now back to the topic at hand..."
+    show professor normal
+    professor "I'm sorry [povname], that was very unprofessional. I shouldn't have yelled."
+    professor "Now back to the topic at hand..."
 
     scene bg Dorm-or-something-idk
 
