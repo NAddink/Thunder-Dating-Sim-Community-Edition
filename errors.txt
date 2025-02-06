@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/GameScripts/script.rpy", line 225: expected statement.
+    galleryunlock blarkin
+                         ^
+
+Ren'Py Version: Ren'Py 8.2.1.24030407
+Wed Feb  5 21:13:13 2025

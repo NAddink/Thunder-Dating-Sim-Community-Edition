@@ -1,0 +1,3491 @@
+﻿#splashscreen
+
+label splashscreen:
+    scene black 
+    show text "By Studio Mueller" with dissolve
+    with Pause(2)
+    hide text with dissolve
+    return
+
+
+
+label sounds:
+
+    ##me when sounds go bbrrrrrrrr this is the defined sounds one is the typewriter one is one sound
+    define sounds = ['audio/typewriter/B1.ogg', 'audio/typewriter/B2.ogg', 'audio/typewriter/B3.ogg', 'audio/typewriter/B4.ogg', 'audio/typewriter/B5.ogg']
+    define sounds2 = ['audio/typewriter/bup.ogg']
+
+
+init python:
+
+    def callback(event, **kwargs):
+        if event == "show":
+            renpy.music.play(renpy.random.choice(sounds), channel="text", loop=True)
+        elif event == "slow_done" or event == "end":
+            renpy.music.stop(channel="text")
+
+
+label defined:
+
+    #All the characters defined
+    define pov = Character("[povname]", callback=callback)
+    define Thunder = Character("Thunder", callback=callback)
+    define puppy = Character("Thunder", callback=callback)
+    define flirty = Character("Thunder", callback=callback)
+    define suave = Character("Thunder", callback=callback)
+    define aggro = Character("Thunder", callback=callback)
+    define larkin = Character("Professor Blarkin", callback=callback)
+
+label defaults:
+
+    default date_puppy_1_done = False
+    default date_puppy_2_done = False
+    default date_puppy_3_done = False
+    default date_puppy_4_done = False
+    default date_puppy_5_done = False
+    default date_flirty_1_done = False
+    default date_flirty_2_done = False
+    default date_flirty_3_done = False
+    default date_flirty_4_done = False
+    default date_flirty_5_done = False
+    default date_suave_1_done = False
+    default date_suave_2_done = False
+    default date_suave_3_done = False
+    default date_suave_4_done = False
+    default date_suave_5_done = False
+    default date_aggro_1_done = False
+    default date_aggro_2_done = False
+    default date_aggro_3_done = False
+    default date_aggro_4_done = False
+    default date_aggro_5_done = False
+    default puppy_w1_points = 0
+    default puppy_w1_successes = 0
+    default suave_w1_points = 0
+    default suave_w1_successes = 0
+    default flirty_w1_points = 0
+    default flirty_w1_successes = 0
+    default aggro_w1_points = 0
+    default aggro_w1_successes = 0
+    default puppy_wtwo_points = 0
+    default puppy_w2_successes = 0
+    default suave_w2_points = 0
+    default suave_w2_successes = 0
+    default flirty_w2_points = 0
+    default flirty_w2_successes = 0
+    default aggro_w2_points = 0
+    default aggro_w2_successes = 0
+    default puppy_w3_points = 0
+    default puppy_w3_successes = 0
+    default suave_w3_points = 0
+    default suave_w3_successes = 0
+    default flirty_w3_points = 0
+    default flirty_w3_successes = 0
+    default aggro_w3_points = 0
+    default aggro_w3_successes = 0
+    default puppy_w4_points = 0
+    default puppy_w4_successes = 0
+    default suave_w4_points = 0
+    default suave_w4_successes = 0
+    default flirty_w4_points = 0
+    default flirty_w4_successes = 0
+    default aggro_w4_points = 0
+    default aggro_w4_successes = 0
+    default puppy_w5_points = 0
+    default puppy_w5_successes = 0
+    default suave_w5_points = 0
+    default suave_w5_successes = 0
+    default flirty_w5_points = 0
+    default flirty_w5_successes = 0
+    default aggro_w5_points = 0
+    default aggro_w5_successes = 0
+    default puppy_fw_points = 0
+    default puppy_fw_successes = 0
+    default suave_fw_points = 0
+    default suave_fw_successes = 0
+    default flirty_fw_points = 0
+    default flirty_fw_successes = 0
+    default aggro_fw_points = 0
+    default aggro_fw_successes = 0
+    default dates_puppy_completed = 0
+    default dates_suave_completed = 0
+    default dates_flirty_completed = 0
+    default dates_aggro_completed = 0
+    default taco_bell_points = 0
+
+
+label blinking_animations:
+    image puppy normal:
+        choice (3.0):
+            "puppy normal.png"
+        choice:
+            "puppy normal closed.png"
+            pause 0.1
+            "puppy normal.png"
+            pause 0.1
+            "puppy normal closed.png"
+            pause 0.1
+            "puppy normal.png"
+        pause 1.0
+        repeat
+
+    image flirty normal:
+        choice (3.0):
+            "flirty normal.png"
+        choice:
+            "flirty normal closed.png"
+            pause 0.1
+            "flirty normal.png"
+            pause 0.1
+            "flirty normal closed.png"
+            pause 0.1
+            "flirty normal.png"
+        pause 1.0
+        repeat
+
+    image suave normal:
+        choice (3.0):
+            "suave normal.png"
+        choice:
+            "suave normal closed.png"
+            pause 0.1
+            "suave normal.png"
+            pause 0.1
+            "suave normal closed.png"
+            pause 0.1
+            "suave normal.png"
+        pause 1.0
+        repeat
+
+    image aggro normal:
+        choice (3.0):
+            "aggro normal.png"
+        choice:
+            "aggro normal closed.png"
+            pause 0.1
+            "aggro normal.png"
+            pause 0.1
+            "aggro normal closed.png"
+            pause 0.1
+            "aggro normal.png"
+        pause 1.0
+        repeat
+
+label start:
+
+
+    
+    scene bg orientation
+    play music "BGM/orientation-music.opus" fadein 1.0
+
+    #asking for a name
+    $ povname = renpy.input("What is your name?", length = 32)
+    call pronounselection
+    #beginnning of the story
+    pov "Wow, GCU orientation!"
+    pov "I can't wait to meet everyone in my"
+    pov "{fi=20-2-10}This is an example of Fade in Text{/fi}"
+    
+    pov "{rotat=100}This is an example of rotating text{/rotat}"
+    pov "{sc=10}This is an example of Scare Text{/sc}"
+    pov "{bt=10}This is an example of Bounce Text{/bt}"
+
+
+    pov "What if I meet ... THE one?"
+    pov "..."
+    pov "Who's That?"
+
+    show puppy normal with easeinleft
+    puppy "Hello there minnow."
+    puppy "Welcome to orientation."
+    puppy "I am thunder!"
+    puppy "The GCU mascot!"
+    show puppy normal
+    puppy "Wanna smooch?"
+    show aggro normal at right 
+    with moveinright
+    aggro "[theyre!t!c] mine"
+    show flirty normal at left
+
+    pov "Ope-"
+
+    scene black
+    show text "Later That Week" with dissolve
+    with Pause(2)
+    hide text with dissolve
+
+
+    scene bg classroom
+
+    pov "Dang I can't stop thinking about Thunder...."
+    pov "Maybe I'll see him at lope-a-palooza tonight...."
+
+    show larkin angry
+    play sound akward
+    larkin "[povname]!!! STOP DOZING OFF!!!"
+
+    $ get_achievement("Hissy", trans=achievement_transform)
+    achieve hissyfit
+    galleryunlock blarkin
+
+    show larkin normal
+    larkin "I'm sorry [povname], that was very unprofessional. I shouldn't have yelled."
+    larkin "Now back to the topic at hand..."
+    show larkin angry
+    larkin "IF YOU VOTED FOR MIKE PENCE YOUR A FOOL!!!!"
+
+    scene bg Dorm-or-something-idk
+
+    pov "Dang, now that class is over I should go somewhere!"
+    jump week1
+  
+label week1:
+    $ week = 1
+    label w1_begin:
+        play music "BGM/event_choice.opus" fadein 0.5
+
+        menu:
+            "Where should I go w1?"
+
+            "The Soccer Field":
+                play music "BGM/puppy_theme.opus" fadein 1.0
+                jump puppy_w1_start
+
+            "Thunderground":
+                play music "BGM/flirty_theme.opus" fadein 1.0
+                jump flirty_w1_start
+
+            "The Library":
+                play music "BGM/suave_theme.opus" fadein 1.0
+                jump suave_w1_start
+
+            "The E-sports Lounge":
+                play music "BGM/aggro_theme.opus" fadein 1.0
+                jump aggro_w1_start
+
+    label puppy_w1_start:
+        scene bg soccer-Field
+
+        pov "Wow its the soccer field"
+
+
+        show puppy normal with easeinleft
+
+        puppy "HEYO"
+        puppy "I'm just a bit of a himbo bimbo but I am cute like a puppy."
+        puppy "I am actually exhuding golden retriever energy..."
+        show puppy blushing
+        puppy "Also I'm hypoallergenic"
+
+
+        jump puppy_w1_dialogue
+
+    label puppy_w1_dialogue:
+        label puppy_w1_d1:
+            
+            menu:
+                "What do I say d1?"
+
+                "Answer1":
+                    #is correct answer
+                    $ puppy_w1_points = puppy_w1_points + 1
+                    jump puppy_w1_d1_a1
+
+                "Answer2":
+                    jump puppy_w1_d1_a2
+
+                "Answer3":
+                    jump puppy_w1_d1_a3
+
+            label puppy_w1_d1_a1:
+                pov "puppy dialogue for week 1 dialogue 1 answer 1 "
+                jump puppy_w1_d2
+
+            label puppy_w1_d1_a2:
+                pov "puppy dialogue for week 1 dialogue 1 answer 2 "
+                jump puppy_w1_d2
+
+            label puppy_w1_d1_a3:
+                pov "puppy dialogue for week 1 dialogue 1 answer 3 "
+                jump puppy_w1_d2
+
+        label puppy_w1_d2:
+            
+            menu:
+                "What do I say d2?"
+
+                "Answer1":
+                    #Is correct answer
+                    $ puppy_w1_points = puppy_w1_points + 1
+                    jump puppy_w1_d2_a1
+
+                "Answer2":
+                    jump puppy_w1_d2_a2
+
+                "Answer3":
+                    jump puppy_w1_d2_a3
+
+            label puppy_w1_d2_a1:
+                pov "puppy dialogue for week 1 dialogue 2 answer 1 "
+                jump puppy_w1_d3
+
+            label puppy_w1_d2_a2:
+                pov "puppy dialogue for week 1 dialogue 2 answer 2 "
+                jump puppy_w1_d3
+
+            label puppy_w1_d2_a3:
+                pov "puppy dialogue for week 1 dialogue 2 answer 3 "
+                jump puppy_w1_d3
+
+        label puppy_w1_d3:
+            
+            menu:
+                "What do I say d3?"
+
+                "Answer1":
+                    #is correct answer
+                    $ puppy_w1_points = puppy_w1_points + 1
+                    jump puppy_w1_d3_a1
+
+                "Answer2":
+                    jump puppy_w1_d3_a2
+
+                "Answer3":
+                    jump puppy_w1_d3_a3
+
+
+            label puppy_w1_d3_a1:
+                pov "puppy dialogue for week 1 dialogue 3 answer 1 "
+                jump puppy_w1_d_complete
+
+            label puppy_w1_d3_a2:
+                pov "puppy dialogue for week 1 dialogue 3 answer 2 "
+                jump puppy_w1_d_complete
+
+            label puppy_w1_d3_a3:
+                pov "puppy dialogue for week 1 dialogue 3 answer 3 "
+                jump puppy_w1_d_complete
+
+        label puppy_w1_d_complete:
+            pov "Wow I'm done talking"
+            if puppy_w1_points >= 2:
+                jump puppy_w1_success
+            else:
+                jump puppy_w1_failure
+
+
+        label puppy_w1_success:
+            pov "Wow I succeeded"
+            $ puppy_w1_successes =+ 1
+            jump w1_complete
+            
+
+        label puppy_w1_failure:
+            pov "Wow I failed"
+            jump w1_complete
+    
+    label flirty_w1_start:
+        scene bg thunderground
+        
+        pov "Wow its the Thunderground"
+
+        show flirty normal with easeinleft
+
+        flirty "HEYO"
+        flirty "I love you, but I'm just too flirty."
+        flirty "I can't be not flirty and I need someone to take my flirtiness out on."
+        
+        $ flirty_w1_points = 0
+
+        jump flirty_w1_dialogue
+
+    label flirty_w1_dialogue:
+        label flirty_w1_d1:
+
+            menu:
+                "What do I say d1?"
+
+                "Answer1":
+                    #is correct answer
+                    $ flirty_w1_points = flirty_w1_points + 1
+                    jump flirty_w1_d1_a1
+
+                "Answer2":
+                    jump flirty_w1_d1_a2
+
+                "Answer3":
+                    jump flirty_w1_d1_a3
+
+            label flirty_w1_d1_a1:
+                pov "flirty dialogue for week 1 dialogue 1 answer 1 "
+                jump flirty_w1_d2
+
+            label flirty_w1_d1_a2:
+                pov "flirty dialogue for week 1 dialogue 1 answer 2 "
+                jump flirty_w1_d2
+
+            label flirty_w1_d1_a3:
+                pov "flirty dialogue for week 1 dialogue 1 answer 3 "
+                jump flirty_w1_d2
+
+        label flirty_w1_d2:
+            
+            menu:
+                "What do I say d2?"
+
+                "Answer1":
+                    #Is correct answer
+                    $ flirty_w1_points = flirty_w1_points + 1
+                    jump flirty_w1_d2_a1
+
+                "Answer2":
+                    jump flirty_w1_d2_a2
+
+                "Answer3":
+                    jump flirty_w1_d2_a3
+
+            label flirty_w1_d2_a1:
+                pov "flirty dialogue for week 1 dialogue 2 answer 1 "
+                jump flirty_w1_d3
+
+            label flirty_w1_d2_a2:
+                pov "flirty dialogue for week 1 dialogue 2 answer 2 "
+                jump flirty_w1_d3
+
+            label flirty_w1_d2_a3:
+                pov "flirty dialogue for week 1 dialogue 2 answer 3 "
+                jump flirty_w1_d3
+
+
+
+        label flirty_w1_d3:
+            
+            menu:
+                "What do I say d3?"
+
+                "Answer1":
+                    #is correct answer
+                    $ flirty_w1_points = flirty_w1_points + 1
+                    jump flirty_w1_d3_a1
+
+                "Answer2":
+                    jump flirty_w1_d3_a2
+
+                "Answer3":
+                    jump flirty_w1_d3_a3
+
+
+            label flirty_w1_d3_a1:
+                pov "flirty dialogue for week 1 dialogue 3 answer 1 "
+                jump flirty_w1_d_complete
+
+            label flirty_w1_d3_a2:
+                pov "flirty dialogue for week 1 dialogue 3 answer 2 "
+                jump flirty_w1_d_complete
+
+            label flirty_w1_d3_a3:
+                pov "flirty dialogue for week 1 dialogue 3 answer 3 "
+                jump flirty_w1_d_complete
+
+        label flirty_w1_d_complete:
+            pov "Wow I'm done talking"
+            if flirty_w1_points >= 2:
+                jump flirty_w1_success
+            else:
+                jump flirty_w1_failure
+
+
+        label flirty_w1_success:
+            pov "Wow I succeeded"
+            $ flirty_w1_successes = flirty_w1_successes + 1
+            jump w1_complete
+            
+
+        label flirty_w1_failure:
+            pov "Wow I failed"
+            jump w1_complete
+        
+    label suave_w1_start:
+        scene bg library
+
+        pov "Wow its the Library"
+
+        show suave normal with easeinleft
+
+        suave "HEYO"
+        suave "I'm just so dang suave. Wow. I wish I was less suave."
+        suave "JK I love being suave. Smooch me please."
+
+        jump suave_w1_dialogue
+
+    label suave_w1_dialogue:
+        label suave_w1_d1:
+
+        menu:
+            "What do I say d1?"
+
+            "Answer1":
+                #is correct answer
+                $ suave_w1_points = suave_w1_points + 1
+                jump suave_w1_d1_a1
+
+            "Answer2":
+                jump suave_w1_d1_a2
+
+            "Answer3":
+                jump suave_w1_d1_a3
+
+        label suave_w1_d1_a1:
+            pov "suave dialogue for week 1 dialogue 1 answer 1 "
+            jump suave_w1_d2
+
+        label suave_w1_d1_a2:
+            pov "suave dialogue for week 1 dialogue  answer 2 "
+            jump suave_w1_d2
+
+        label suave_w1_d1_a3:
+            pov "suave dialogue for week 1 dialogue 1 answer 3 "
+            jump suave_w1_d2
+
+        label suave_w1_d2:
+            
+        menu:
+            "What do I say d2?"
+
+            "Answer1":
+                #Is correct answer
+                $ suave_w1_points = suave_w1_points + 1
+                jump suave_w1_d2_a1
+
+            "Answer2":
+                jump suave_w1_d2_a2
+
+            "Answer3":
+                jump suave_w1_d2_a3
+
+        label suave_w1_d2_a1:
+            pov "suave dialogue for week 1 dialogue 2 answer 1 "
+            jump suave_w1_d3
+
+        label suave_w1_d2_a2:
+            pov "suave dialogue for week 1 dialogue 2 answer 2 "
+            jump suave_w1_d3
+
+        label suave_w1_d2_a3:
+            pov "suave dialogue for week 1 dialogue 2 answer 3 "
+            jump suave_w1_d3
+
+
+
+        label suave_w1_d3:
+            
+        menu:
+            "What do I say d3?"
+
+            "Answer1":
+                #is correct answer
+                $ suave_w1_points = suave_w1_points + 1
+                jump suave_w1_d3_a1
+
+            "Answer2":
+                jump suave_w1_d3_a2
+
+            "Answer3":
+                jump suave_w1_d3_a3
+
+
+        label suave_w1_d3_a1:
+            pov "suave dialogue for week 1 dialogue 3 answer 1 "
+            jump suave_w1_d_complete
+
+        label suave_w1_d3_a2:
+            pov "suave dialogue for week 1 dialogue 3 answer 2 "
+            jump suave_w1_d_complete
+
+        label suave_w1_d3_a3:
+            pov "suave dialogue for week 1 dialogue 3 answer 3 "
+            jump suave_w1_d_complete
+
+        label suave_w1_d_complete:
+            pov "Wow I'm done talking"
+            if suave_w1_points >= 2:
+                jump suave_w1_success
+            else:
+                jump suave_w1_failure
+
+
+        label suave_w1_success:
+            pov "Wow I succeeded"
+            $ suave_w1_successes = suave_w1_successes + 1
+            jump w1_complete
+            
+
+        label suave_w1_failure:
+            pov "Wow I failed"
+            jump w1_complete
+        
+    label aggro_w1_start:
+        scene bg e-sports-lounge
+
+        pov "Wow its the E-sports lounge"
+
+        show aggro normal with easeinleft
+
+        aggro "HEYO"
+        aggro "I'm a bad boy, owo"
+        aggro "Date me and you'll find out how bad boy I am."
+        jump aggro_w1_dialogue
+
+    label aggro_w1_dialogue:
+        label aggro_w1_d1:
+            
+        menu:
+            "What do I say d1?"
+
+            "Answer1":
+                #is correct answer
+                $ aggro_w1_points = aggro_w1_points + 1
+                jump aggro_w1_d1_a1
+
+            "Answer2":
+                jump aggro_w1_d1_a2
+
+            "Answer3":
+                jump aggro_w1_d1_a3
+
+        label aggro_w1_d1_a1:
+            pov "aggro dialogue for week 1 dialogue 1 answer 1 "
+            jump aggro_w1_d2
+
+        label aggro_w1_d1_a2:
+            pov "aggro dialogue for week 1 dialogue 1 answer 2 "
+            jump aggro_w1_d2
+
+        label aggro_w1_d1_a3:
+            pov "aggro dialogue for week 1 dialogue 1 answer 3 "
+            jump aggro_w1_d2
+
+        label aggro_w1_d2:
+            
+        menu:
+            "What do I say d2?"
+
+            "Answer1":
+                #Is correct answer
+                $ aggro_w1_points = aggro_w1_points + 1
+                jump aggro_w1_d2_a1
+
+            "Answer2":
+                jump aggro_w1_d2_a2
+
+            "Answer3":
+                jump aggro_w1_d2_a3
+
+        label aggro_w1_d2_a1:
+            pov "aggro dialogue for week 1 dialogue 2 answer 1 "
+            jump aggro_w1_d3
+
+        label aggro_w1_d2_a2:
+            pov "aggro dialogue for week 1 dialogue 2 answer 2 "
+            jump aggro_w1_d3
+
+        label aggro_w1_d2_a3:
+            pov "aggro dialogue for week 1 dialogue 2 answer 3 "
+            jump aggro_w1_d3
+
+
+
+        label aggro_w1_d3:
+            
+        menu:
+            "What do I say d3?"
+
+            "Answer1":
+                #is correct answer
+                $ aggro_w1_points = aggro_w1_points + 1
+                jump aggro_w1_d3_a1
+
+            "Answer2":
+                jump aggro_w1_d3_a2
+
+            "Answer3":
+                jump aggro_w1_d3_a3
+
+
+        label aggro_w1_d3_a1:
+            pov "aggro dialogue for week 1 dialogue 3 answer 1 "
+            jump aggro_w1_d_complete
+
+        label aggro_w1_d3_a2:
+            pov "aggro dialogue for week 1 dialogue 3 answer 2 "
+            jump aggro_w1_d_complete
+
+        label aggro_w1_d3_a3:
+            pov "aggro dialogue for week 1 dialogue 3 answer 3 "
+            jump aggro_w1_d_complete
+
+        label aggro_w1_d_complete:
+            pov "Wow I'm done talking"
+            if aggro_w1_points >= 2:
+                jump aggro_w1_success
+            else:
+                jump aggro_w1_failure
+
+
+        label aggro_w1_success:
+            pov "Wow I succeeded"
+            $ aggro_w1_successes = aggro_w1_successes + 1
+            jump w1_complete
+            
+
+        label aggro_w1_failure:
+            pov "Wow I failed"
+            jump w1_complete
+        
+label w1_complete:
+    pov "Wow I had a nice week with thunder"
+    
+    
+
+    if puppy_w1_successes == 1 and date_puppy_1_done == False :
+        jump date_puppy_1
+    if flirty_w1_successes == 1 and date_flirty_1_done == False:
+        jump date_flirty_1
+    if suave_w1_successes == 1 and date_suave_1_done == False:
+        jump date_suave_1
+    if aggro_w1_successes == 1 and date_aggro_1_done == False:
+        jump date_aggro_1
+    else:
+        jump failureweek1
+
+label failureweek1:
+    pov "I failed. No date."
+    if week == 1:
+        jump week2
+    if week == 2:
+        jump week3
+    if week == 3:
+        jump week4
+    if week == 4:
+        jump week5
+    if week == 5:
+        jump finalweek
+
+label date1:
+
+    label date_puppy_1:
+        pov "Wow I'm on a date with puppy"
+        $ date_puppy_1_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+    
+
+    label date_flirty_1:
+        pov "Wow I'm on a date with suave"
+        $ date_suave_1_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+
+    label date_suave_1:
+        pov "Wow I'm on a date with suave"
+        $ date_suave_1_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+
+    label date_aggro_1:
+        pov "Wow I'm on a date with aggro"
+        $ date_aggro_1_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+
+##FIRST WEEK END
+
+
+##SECOND WEEK BEGIN
+
+
+label week2:
+    $ week = 2
+    label w2_begin:
+        play music "BGM/event_choice.opus" fadein 0.5
+
+        menu:
+            "Where should I go w2?"
+
+            "The Soccer Field":
+                play music "BGM/puppy_theme.opus" fadein 1.0
+                jump puppy_w2_start
+
+            "Thunderground":
+                play music "BGM/flirty_theme.opus" fadein 1.0
+                jump flirty_w2_start
+
+            "The Library":
+                play music "BGM/suave_theme.opus" fadein 1.0
+                jump suave_w2_start
+                
+
+            "The E-sports Lounge":
+                play music "BGM/aggro_theme.opus" fadein 1.0
+                jump aggro_w2_start
+
+    label puppy_w2_start:
+        scene bg soccer-Field
+
+        pov "Wow its the soccer field"
+        show puppy normal with easeinleft
+
+        puppy "HEYO"
+        puppy "I'm just a bit of a himbo bimbo but I am cute like a puppy."
+        puppy "I am actually exhuding golden retriever energy..."
+        show puppy blushing
+        puppy "Also I'm hypoallergenic"
+
+
+        jump puppy_w2_dialogue
+
+    label puppy_w2_dialogue:
+        label puppy_w2_d1:
+            
+            menu:
+                "What do I say d1?"
+
+                "Answer1":
+                    #is correct answer
+                    $ puppy_wtwo_points = puppy_wtwo_points + 1
+                    jump puppy_w2_d1_a1
+
+                "Answer2":
+                    jump puppy_w2_d1_a2
+
+                "Answer3":
+                    jump puppy_w2_d1_a3
+
+            label puppy_w2_d1_a1:
+                pov "puppy dialogue for week 2 dialogue 1 answer 1 "
+                jump puppy_w2_d2
+
+            label puppy_w2_d1_a2:
+                pov "puppy dialogue for week 2 dialogue 1 answer 2 "
+                jump puppy_w2_d2
+
+            label puppy_w2_d1_a3:
+                pov "puppy dialogue for week 2 dialogue 1 answer 3 "
+                jump puppy_w2_d2
+
+        label puppy_w2_d2:
+            
+            menu:
+                "What do I say d2?"
+
+                "Answer1":
+                    #Is correct answer
+                    $ puppy_wtwo_points = puppy_wtwo_points + 1
+                    jump puppy_w2_d2_a1
+
+                "Answer2":
+                    jump puppy_w2_d2_a2
+
+                "Answer3":
+                    jump puppy_w2_d2_a3
+
+            label puppy_w2_d2_a1:
+                pov "puppy dialogue for week 2 dialogue 2 answer 1 "
+                jump puppy_w2_d3
+
+            label puppy_w2_d2_a2:
+                pov "puppy dialogue for week 2 dialogue 2 answer 2 "
+                jump puppy_w2_d3
+
+            label puppy_w2_d2_a3:
+                pov "puppy dialogue for week 2 dialogue 2 answer 3 "
+                jump puppy_w2_d3
+
+        label puppy_w2_d3:
+            
+            menu:
+                "What do I say d3?"
+
+                "Answer1":
+                    #is correct answer
+                    $ puppy_wtwo_points = puppy_wtwo_points + 1
+                    jump puppy_w2_d3_a1
+
+                "Answer2":
+                    jump puppy_w2_d3_a2
+
+                "Answer3":
+                    jump puppy_w2_d3_a3
+
+
+            label puppy_w2_d3_a1:
+                pov "puppy dialogue for week 2 dialogue 3 answer 1 "
+                jump puppy_w2_d_complete
+
+            label puppy_w2_d3_a2:
+                pov "puppy dialogue for week 2 dialogue 3 answer 2 "
+                jump puppy_w2_d_complete
+
+            label puppy_w2_d3_a3:
+                pov "puppy dialogue for week 2 dialogue 3 answer 3 "
+                jump puppy_w2_d_complete
+
+        label puppy_w2_d_complete:
+            pov "Wow I'm done talking"
+            if puppy_wtwo_points >= 2:
+                jump puppy_w2_success
+            else:
+                jump puppy_w2_failure
+
+
+        label puppy_w2_success:
+            pov "Wow I succeeded"
+            $ puppy_w2_successes = 1
+            jump w2_complete
+            
+
+        label puppy_w2_failure:
+            pov "Wow I failed"
+            jump w2_complete
+    
+    label flirty_w2_start:
+        scene bg thunderground
+
+        pov "Wow its the Thunderground"
+
+        show flirty normal with easeinleft
+
+        flirty "HEYO"
+        flirty "I love you, but I'm just too flirty."
+        flirty "I can't be not flirty and I need someone to take my flirtiness out on."
+        
+        $ flirty_w2_points = 0
+
+        jump flirty_w2_dialogue
+
+    label flirty_w2_dialogue:
+        label flirty_w2_d1:
+
+            menu:
+                "What do I say d1?"
+
+                "Answer1":
+                    #is correct answer
+                    $ flirty_w2_points += 1
+                    jump flirty_w2_d1_a1
+
+                "Answer2":
+                    jump flirty_w2_d1_a2
+
+                "Answer3":
+                    jump flirty_w2_d1_a3
+
+            label flirty_w2_d1_a1:
+                pov "flirty dialogue for week 2 dialogue 1 answer 1 "
+                jump flirty_w2_d2
+
+            label flirty_w2_d1_a2:
+                pov "flirty dialogue for week 2 dialogue 1 answer 2 "
+                jump flirty_w2_d2
+
+            label flirty_w2_d1_a3:
+                pov "flirty dialogue for week 2 dialogue 1 answer 3 "
+                jump flirty_w2_d2
+
+        label flirty_w2_d2:
+            
+            menu:
+                "What do I say d2?"
+
+                "Answer1":
+                    #Is correct answer
+                    $ flirty_w2_points += 1
+                    jump flirty_w2_d2_a1
+
+                "Answer2":
+                    jump flirty_w2_d2_a2
+
+                "Answer3":
+                    jump flirty_w2_d2_a3
+
+            label flirty_w2_d2_a1:
+                pov "flirty dialogue for week 2 dialogue 2 answer 1 "
+                jump flirty_w2_d3
+
+            label flirty_w2_d2_a2:
+                pov "flirty dialogue for week 2 dialogue 2 answer 2 "
+                jump flirty_w2_d3
+
+            label flirty_w2_d2_a3:
+                pov "flirty dialogue for week 2 dialogue 2 answer 3 "
+                jump flirty_w2_d3
+
+
+
+        label flirty_w2_d3:
+            
+            menu:
+                "What do I say d3?"
+                
+                "Answer1":
+                    #is correct answer
+                    $ flirty_w2_points += 1
+                    jump flirty_w2_d3_a1
+
+                "Answer2":
+                    jump flirty_w2_d3_a2
+
+                "Answer3":
+                    jump flirty_w2_d3_a3
+
+
+            label flirty_w2_d3_a1:
+                pov "flirty dialogue for week 2 dialogue 3 answer 1 "
+                jump flirty_w2_d_complete
+
+            label flirty_w2_d3_a2:
+                pov "flirty dialogue for week 2 dialogue 3 answer 2 "
+                jump flirty_w2_d_complete
+
+            label flirty_w2_d3_a3:
+                pov "flirty dialogue for week 2 dialogue 3 answer 3 "
+                jump flirty_w2_d_complete
+
+        label flirty_w2_d_complete:
+            pov "Wow I'm done talking"
+            if flirty_w2_points >= 2:
+                jump flirty_w2_success
+            else:
+                jump flirty_w2_failure
+
+
+        label flirty_w2_success:
+            pov "Wow I succeeded"
+            $ flirty_w2_successes = 1
+            jump w2_complete
+            
+
+        label flirty_w2_failure:
+            pov "Wow I failed"
+            jump w2_complete
+        
+    label suave_w2_start:
+        scene bg library
+
+        pov "Wow its the Library"
+
+        show suave normal with easeinleft
+
+        suave "HEYO"
+        suave "I'm just so dang suave. Wow. I wish I was less suave."
+        suave "JK I love being suave. Smooch me please."
+
+        jump suave_w2_dialogue
+
+    label suave_w2_dialogue:
+        label suave_w2_d1:
+
+        menu:
+            "What do I say d1?"
+
+            "Answer1":
+                #is correct answer
+                $ suave_w2_points = suave_w2_points + 1
+                jump suave_w2_d1_a1
+
+            "Answer2":
+                jump suave_w2_d1_a2
+
+            "Answer3":
+                jump suave_w2_d1_a3
+
+        label suave_w2_d1_a1:
+            pov "suave dialogue for week 2 dialogue 1 answer 1 "
+            jump suave_w2_d2
+
+        label suave_w2_d1_a2:
+            pov "suave dialogue for week 2 dialogue  answer 2 "
+            jump suave_w2_d2
+
+        label suave_w2_d1_a3:
+            pov "suave dialogue for week 2 dialogue 1 answer 3 "
+            jump suave_w2_d2
+
+        label suave_w2_d2:
+            
+        menu:
+            "What do I say d2?"
+
+            "Answer1":
+                #Is correct answer
+                $ suave_w2_points = suave_w2_points + 1
+                jump suave_w2_d2_a1
+
+            "Answer2":
+                jump suave_w2_d2_a2
+
+            "Answer3":
+                jump suave_w2_d2_a3
+
+        label suave_w2_d2_a1:
+            pov "suave dialogue for week 2 dialogue 2 answer 1 "
+            jump suave_w2_d3
+
+        label suave_w2_d2_a2:
+            pov "suave dialogue for week 2 dialogue 2 answer 2 "
+            jump suave_w2_d3
+
+        label suave_w2_d2_a3:
+            pov "suave dialogue for week 2 dialogue 2 answer 3 "
+            jump suave_w2_d3
+
+
+
+        label suave_w2_d3:
+            
+        menu:
+            "What do I say d3?"
+
+            "Answer1":
+                #is correct answer
+                $ suave_w2_points = suave_w2_points + 1
+                jump suave_w2_d3_a1
+
+            "Answer2":
+                jump suave_w2_d3_a2
+
+            "Answer3":
+                jump suave_w2_d3_a3
+
+
+        label suave_w2_d3_a1:
+            pov "suave dialogue for week 2 dialogue 3 answer 1 "
+            jump suave_w2_d_complete
+
+        label suave_w2_d3_a2:
+            pov "suave dialogue for week 2 dialogue 3 answer 2 "
+            jump suave_w2_d_complete
+
+        label suave_w2_d3_a3:
+            pov "suave dialogue for week 2 dialogue 3 answer 3 "
+            jump suave_w2_d_complete
+
+        label suave_w2_d_complete:
+            pov "Wow I'm done talking"
+            if suave_w2_points >= 2:
+                jump suave_w2_success
+            else:
+                jump suave_w2_failure
+
+
+        label suave_w2_success:
+            pov "Wow I succeeded"
+            $ suave_w2_successes = suave_w2_successes + 1
+            jump w2_complete
+            
+
+        label suave_w2_failure:
+            pov "Wow I failed"
+            jump w2_complete
+        
+    label aggro_w2_start:
+        scene bg e-sports-lounge
+
+        pov "Wow its the E-sports lounge"
+
+        show aggro normal with easeinleft
+
+        aggro "HEYO"
+        aggro "I'm a bad boy, owo"
+        aggro "Date me and you'll find out how bad boy I am."
+        jump aggro_w2_dialogue
+
+    label aggro_w2_dialogue:
+        label aggro_w2_d1:
+            
+        menu:
+            "What do I say d1?"
+
+            "Answer1":
+                #is correct answer
+                $ aggro_w2_points = aggro_w2_points + 1
+                jump aggro_w2_d1_a1
+
+            "Answer2":
+                jump aggro_w2_d1_a2
+
+            "Answer3":
+                jump aggro_w2_d1_a3
+
+        label aggro_w2_d1_a1:
+            pov "aggro dialogue for week 2 dialogue 1 answer 1 "
+            jump aggro_w2_d2
+
+        label aggro_w2_d1_a2:
+            pov "aggro dialogue for week 2 dialogue 1 answer 2 "
+            jump aggro_w2_d2
+
+        label aggro_w2_d1_a3:
+            pov "aggro dialogue for week 2 dialogue 1 answer 3 "
+            jump aggro_w2_d2
+
+        label aggro_w2_d2:
+            
+        menu:
+            "What do I say d2?"
+
+            "Answer1":
+                #Is correct answer
+                $ aggro_w2_points = aggro_w2_points + 1
+                jump aggro_w2_d2_a1
+
+            "Answer2":
+                jump aggro_w2_d2_a2
+
+            "Answer3":
+                jump aggro_w2_d2_a3
+
+        label aggro_w2_d2_a1:
+            pov "aggro dialogue for week 2 dialogue 2 answer 1 "
+            jump aggro_w2_d3
+
+        label aggro_w2_d2_a2:
+            pov "aggro dialogue for week 2 dialogue 2 answer 2 "
+            jump aggro_w2_d3
+
+        label aggro_w2_d2_a3:
+            pov "aggro dialogue for week 2 dialogue 2 answer 3 "
+            jump aggro_w2_d3
+
+
+
+        label aggro_w2_d3:
+            
+        menu:
+            "What do I say d3?"
+
+            "Answer1":
+                #is correct answer
+                $ aggro_w2_points = aggro_w2_points + 1
+                jump aggro_w2_d3_a1
+
+            "Answer2":
+                jump aggro_w2_d3_a2
+
+            "Answer3":
+                jump aggro_w2_d3_a3
+
+
+        label aggro_w2_d3_a1:
+            pov "aggro dialogue for week 2 dialogue 3 answer 1 "
+            jump aggro_w2_d_complete
+
+        label aggro_w2_d3_a2:
+            pov "aggro dialogue for week 2 dialogue 3 answer 2 "
+            jump aggro_w2_d_complete
+
+        label aggro_w2_d3_a3:
+            pov "aggro dialogue for week 2 dialogue 3 answer 3 "
+            jump aggro_w2_d_complete
+
+        label aggro_w2_d_complete:
+            pov "Wow I'm done talking"
+            if aggro_w2_points >= 2:
+                jump aggro_w2_success
+            else:
+                jump aggro_w2_failure
+
+
+        label aggro_w2_success:
+            pov "Wow I succeeded"
+            $ aggro_w2_successes = 1
+            jump w2_complete
+            
+
+        label aggro_w2_failure:
+            pov "Wow I failed"
+            jump w2_complete
+        
+label w2_complete:
+
+    if puppy_w2_successes == 1:
+        if date_puppy_1_done == True: 
+            jump date_puppy_2
+        else:
+            jump date_puppy_1
+
+    if flirty_w2_successes == 1:
+        if date_flirty_1_done == True:
+            jump date_flirty_2
+        else:
+            jump date_flirty_1
+
+    if suave_w2_successes == 1:
+        if date_suave_1_done == True:
+            jump date_suave_2
+        else:
+            jump date_suave_1
+
+    if aggro_w2_successes == 1:
+        if date_aggro_1_done == True:
+            jump date_aggro_2
+        else:
+            jump date_aggro_1
+
+    else:
+        jump failureweek2
+
+label failureweek2:
+    pov "I failed. No date."
+    if week == 1:
+        jump week2
+    if week == 2:
+        jump week3
+    if week == 3:
+        jump week4
+    if week == 4:
+        jump week5
+    if week == 5:
+        jump finalweek
+        
+label date2:
+
+    label date_puppy_2:
+        pov "Wow I'm on a 2nd date with puppy"
+        $ date_puppy_2_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+    
+
+    label date_flirty_2:
+        pov "Wow I'm on a 2nd date with suave"
+        $ date_suave_2_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+
+    label date_suave_2:
+        pov "Wow I'm on a 2nd date with suave"
+        $ date_suave_2_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+
+    label date_aggro_2:
+        pov "Wow I'm on a 2nd date with aggro"
+        $ date_aggro_2_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+
+
+##SECOND WEEK END
+
+
+##THIRD WEEK BEGIN
+
+label week3:
+    $ week = 3
+    label w3_begin:
+        play music "BGM/event_choice.opus" fadein 0.5
+
+        menu:
+            "Where should I go w3?"
+
+            "The Soccer Field":
+                play music "BGM/puppy_theme.opus" fadein 1.0
+                jump puppy_w3_start
+
+            "Thunderground":
+                play music "BGM/flirty_theme.opus" fadein 1.0
+                jump flirty_w3_start
+
+            "The Library":
+                play music "BGM/suave_theme.opus" fadein 1.0
+                jump suave_w3_start
+
+            "The E-sports Lounge":
+                play music "BGM/aggro_theme.opus" fadein 1.0
+                jump aggro_w3_start
+
+    label puppy_w3_start:
+        scene bg soccer-Field
+
+        pov "Wow its the soccer field"
+
+        show puppy normal with easeinleft
+
+        puppy "HEYO"
+        puppy "I'm just a bit of a himbo bimbo but I am cute like a puppy."
+        puppy "I am actually exhuding golden retriever energy..."
+        show puppy blushing
+        puppy "Also I'm hypoallergenic"
+
+
+        jump puppy_w3_dialogue
+
+    label puppy_w3_dialogue:
+        label puppy_w3_d1:
+            
+            menu:
+                "What do I say d1?"
+
+                "Answer1":
+                    #is correct answer
+                    $ puppy_w3_points = puppy_w3_points + 1
+                    jump puppy_w3_d1_a1
+
+                "Answer2":
+                    jump puppy_w3_d1_a2
+
+                "Answer3":
+                    jump puppy_w3_d1_a3
+
+            label puppy_w3_d1_a1:
+                pov "puppy dialogue for week 3 dialogue 1 answer 1 "
+                jump puppy_w3_d2
+
+            label puppy_w3_d1_a2:
+                pov "puppy dialogue for week 3 dialogue 1 answer 2 "
+                jump puppy_w3_d2
+
+            label puppy_w3_d1_a3:
+                pov "puppy dialogue for week 3 dialogue 1 answer 3 "
+                jump puppy_w3_d2
+
+        label puppy_w3_d2:
+            
+            menu:
+                "What do I say d2?"
+
+                "Answer1":
+                    #Is correct answer
+                    $ puppy_w3_points = puppy_w3_points + 1
+                    jump puppy_w3_d2_a1
+
+                "Answer2":
+                    jump puppy_w3_d2_a2
+
+                "Answer3":
+                    jump puppy_w3_d2_a3
+
+            label puppy_w3_d2_a1:
+                pov "puppy dialogue for week 3 dialogue 2 answer 1 "
+                jump puppy_w3_d3
+
+            label puppy_w3_d2_a2:
+                pov "puppy dialogue for week 3 dialogue 2 answer 2 "
+                jump puppy_w3_d3
+
+            label puppy_w3_d2_a3:
+                pov "puppy dialogue for week 3 dialogue 2 answer 3 "
+                jump puppy_w3_d3
+
+        label puppy_w3_d3:
+            
+            menu:
+                "What do I say d3?"
+
+                "Answer1":
+                    #is correct answer
+                    $ puppy_w3_points = puppy_w3_points + 1
+                    jump puppy_w3_d3_a1
+
+                "Answer2":
+                    jump puppy_w3_d3_a2
+
+                "Answer3":
+                    jump puppy_w3_d3_a3
+
+
+            label puppy_w3_d3_a1:
+                pov "puppy dialogue for week 3 dialogue 3 answer 1 "
+                jump puppy_w3_d_complete
+
+            label puppy_w3_d3_a2:
+                pov "puppy dialogue for week 3 dialogue 3 answer 2 "
+                jump puppy_w3_d_complete
+
+            label puppy_w3_d3_a3:
+                pov "puppy dialogue for week 3 dialogue 3 answer 3 "
+                jump puppy_w3_d_complete
+
+        label puppy_w3_d_complete:
+            pov "Wow I'm done talking"
+            if puppy_w3_points >= 2:
+                jump puppy_w3_success
+            else:
+                jump puppy_w3_failure
+
+
+        label puppy_w3_success:
+            pov "Wow I succeeded"
+            $ puppy_w3_successes =+ 1
+            jump w3_complete
+            
+
+        label puppy_w3_failure:
+            pov "Wow I failed"
+            jump w3_complete
+    
+    label flirty_w3_start:
+        scene bg thunderground
+
+        pov "Wow its the Thunderground"
+
+        show flirty normal with easeinleft
+
+        flirty "HEYO"
+        flirty "I love you, but I'm just too flirty."
+        flirty "I can't be not flirty and I need someone to take my flirtiness out on."
+        
+        $ flirty_w3_points = 0
+
+        jump flirty_w3_dialogue
+
+    label flirty_w3_dialogue:
+        label flirty_w3_d1:
+
+            menu:
+                "What do I say d1?"
+
+                "Answer1":
+                    #is correct answer
+                    $ flirty_w3_points = flirty_w3_points + 1
+                    jump flirty_w3_d1_a1
+
+                "Answer2":
+                    jump flirty_w3_d1_a2
+
+                "Answer3":
+                    jump flirty_w3_d1_a3
+
+            label flirty_w3_d1_a1:
+                pov "flirty dialogue for week 3 dialogue 1 answer 1 "
+                jump flirty_w3_d2
+
+            label flirty_w3_d1_a2:
+                pov "flirty dialogue for week 3 dialogue 1 answer 2 "
+                jump flirty_w3_d2
+
+            label flirty_w3_d1_a3:
+                pov "flirty dialogue for week 3 dialogue 1 answer 3 "
+                jump flirty_w3_d2
+
+        label flirty_w3_d2:
+            
+            menu:
+                "What do I say d2?"
+
+                "Answer1":
+                    #Is correct answer
+                    $ flirty_w3_points = flirty_w3_points + 1
+                    jump flirty_w3_d2_a1
+
+                "Answer2":
+                    jump flirty_w3_d2_a2
+
+                "Answer3":
+                    jump flirty_w3_d2_a3
+
+            label flirty_w3_d2_a1:
+                pov "flirty dialogue for week 3 dialogue 2 answer 1 "
+                jump flirty_w3_d3
+
+            label flirty_w3_d2_a2:
+                pov "flirty dialogue for week 3 dialogue 2 answer 2 "
+                jump flirty_w3_d3
+
+            label flirty_w3_d2_a3:
+                pov "flirty dialogue for week 3 dialogue 2 answer 3 "
+                jump flirty_w3_d3
+
+
+
+        label flirty_w3_d3:
+            
+            menu:
+                "What do I say d3?"
+
+                "Answer1":
+                    #is correct answer
+                    $ flirty_w3_points = flirty_w3_points + 1
+                    jump flirty_w3_d3_a1
+
+                "Answer2":
+                    jump flirty_w3_d3_a2
+
+                "Answer3":
+                    jump flirty_w3_d3_a3
+
+
+            label flirty_w3_d3_a1:
+                pov "flirty dialogue for week 3 dialogue 3 answer 1 "
+                jump flirty_w3_d_complete
+
+            label flirty_w3_d3_a2:
+                pov "flirty dialogue for week 3 dialogue 3 answer 2 "
+                jump flirty_w3_d_complete
+
+            label flirty_w3_d3_a3:
+                pov "flirty dialogue for week 3 dialogue 3 answer 3 "
+                jump flirty_w3_d_complete
+
+        label flirty_w3_d_complete:
+            pov "Wow I'm done talking"
+            if flirty_w3_points >= 2:
+                jump flirty_w3_success
+            else:
+                jump flirty_w3_failure
+
+
+        label flirty_w3_success:
+            pov "Wow I succeeded"
+            $ flirty_w3_successes = flirty_w3_successes + 1
+            jump w3_complete
+            
+
+        label flirty_w3_failure:
+            pov "Wow I failed"
+            jump w3_complete
+        
+    label suave_w3_start:
+        scene bg library
+
+        pov "Wow its the Library"
+
+        show suave normal with easeinleft
+
+        suave "HEYO"
+        suave "I'm just so dang suave. Wow. I wish I was less suave."
+        suave "JK I love being suave. Smooch me please."
+
+        jump suave_w3_dialogue
+
+    label suave_w3_dialogue:
+        label suave_w3_d1:
+
+        menu:
+            "What do I say d1?"
+
+            "Answer1":
+                #is correct answer
+                $ suave_w3_points = suave_w3_points + 1
+                jump suave_w3_d1_a1
+
+            "Answer2":
+                jump suave_w3_d1_a2
+
+            "Answer3":
+                jump suave_w3_d1_a3
+
+        label suave_w3_d1_a1:
+            pov "suave dialogue for week 3 dialogue 1 answer 1 "
+            jump suave_w3_d2
+
+        label suave_w3_d1_a2:
+            pov "suave dialogue for week 3 dialogue  answer 2 "
+            jump suave_w3_d2
+
+        label suave_w3_d1_a3:
+            pov "suave dialogue for week 3 dialogue 1 answer 3 "
+            jump suave_w3_d2
+
+        label suave_w3_d2:
+            
+        menu:
+            "What do I say d2?"
+
+            "Answer1":
+                #Is correct answer
+                $ suave_w3_points = suave_w3_points + 1
+                jump suave_w3_d2_a1
+
+            "Answer2":
+                jump suave_w3_d2_a2
+
+            "Answer3":
+                jump suave_w3_d2_a3
+
+        label suave_w3_d2_a1:
+            pov "suave dialogue for week 3 dialogue 2 answer 1 "
+            jump suave_w3_d3
+
+        label suave_w3_d2_a2:
+            pov "suave dialogue for week 3 dialogue 2 answer 2 "
+            jump suave_w3_d3
+
+        label suave_w3_d2_a3:
+            pov "suave dialogue for week 3 dialogue 2 answer 3 "
+            jump suave_w3_d3
+
+
+
+        label suave_w3_d3:
+            
+        menu:
+            "What do I say d3?"
+
+            "Answer1":
+                #is correct answer
+                $ suave_w3_points = suave_w3_points + 1
+                jump suave_w3_d3_a1
+
+            "Answer2":
+                jump suave_w3_d3_a2
+
+            "Answer3":
+                jump suave_w3_d3_a3
+
+
+        label suave_w3_d3_a1:
+            pov "suave dialogue for week 3 dialogue 3 answer 1 "
+            jump suave_w3_d_complete
+
+        label suave_w3_d3_a2:
+            pov "suave dialogue for week 3 dialogue 3 answer 2 "
+            jump suave_w3_d_complete
+
+        label suave_w3_d3_a3:
+            pov "suave dialogue for week 3 dialogue 3 answer 3 "
+            jump suave_w3_d_complete
+
+        label suave_w3_d_complete:
+            pov "Wow I'm done talking"
+            if suave_w3_points >= 2:
+                jump suave_w3_success
+            else:
+                jump suave_w3_failure
+
+
+        label suave_w3_success:
+            pov "Wow I succeeded"
+            $ suave_w3_successes = suave_w3_successes + 1
+            jump w3_complete
+            
+
+        label suave_w3_failure:
+            pov "Wow I failed"
+            jump w3_complete
+        
+    label aggro_w3_start:
+        scene bg e-sports-lounge
+
+        pov "Wow its the E-sports lounge"
+
+        show aggro normal with easeinleft
+
+        aggro "HEYO"
+        aggro "I'm a bad boy, owo"
+        aggro "Date me and you'll find out how bad boy I am."
+        jump aggro_w3_dialogue
+
+    label aggro_w3_dialogue:
+        label aggro_w3_d1:
+            
+        menu:
+            "What do I say d1?"
+
+            "Answer1":
+                #is correct answer
+                $ aggro_w3_points = aggro_w3_points + 1
+                jump aggro_w3_d1_a1
+
+            "Answer2":
+                jump aggro_w3_d1_a2
+
+            "Answer3":
+                jump aggro_w3_d1_a3
+
+        label aggro_w3_d1_a1:
+            pov "aggro dialogue for week 3 dialogue 1 answer 1 "
+            jump aggro_w3_d2
+
+        label aggro_w3_d1_a2:
+            pov "aggro dialogue for week 3 dialogue 1 answer 2 "
+            jump aggro_w3_d2
+
+        label aggro_w3_d1_a3:
+            pov "aggro dialogue for week 3 dialogue 1 answer 3 "
+            jump aggro_w3_d2
+
+        label aggro_w3_d2:
+            
+        menu:
+            "What do I say d2?"
+
+            "Answer1":
+                #Is correct answer
+                $ aggro_w3_points = aggro_w3_points + 1
+                jump aggro_w3_d2_a1
+
+            "Answer2":
+                jump aggro_w3_d2_a2
+
+            "Answer3":
+                jump aggro_w3_d2_a3
+
+        label aggro_w3_d2_a1:
+            pov "aggro dialogue for week 3 dialogue 2 answer 1 "
+            jump aggro_w3_d3
+
+        label aggro_w3_d2_a2:
+            pov "aggro dialogue for week 3 dialogue 2 answer 2 "
+            jump aggro_w3_d3
+
+        label aggro_w3_d2_a3:
+            pov "aggro dialogue for week 3 dialogue 2 answer 3 "
+            jump aggro_w3_d3
+
+
+
+        label aggro_w3_d3:
+            
+        menu:
+            "What do I say d3?"
+
+            "Answer1":
+                #is correct answer
+                $ aggro_w3_points = aggro_w3_points + 1
+                jump aggro_w3_d3_a1
+
+            "Answer2":
+                jump aggro_w3_d3_a2
+
+            "Answer3":
+                jump aggro_w3_d3_a3
+
+
+        label aggro_w3_d3_a1:
+            pov "aggro dialogue for week 3 dialogue 3 answer 1 "
+            jump aggro_w3_d_complete
+
+        label aggro_w3_d3_a2:
+            pov "aggro dialogue for week 3 dialogue 3 answer 2 "
+            jump aggro_w3_d_complete
+
+        label aggro_w3_d3_a3:
+            pov "aggro dialogue for week 3 dialogue 3 answer 3 "
+            jump aggro_w3_d_complete
+
+        label aggro_w3_d_complete:
+            pov "Wow I'm done talking"
+            if aggro_w3_points >= 2:
+                jump aggro_w3_success
+            else:
+                jump aggro_w3_failure
+
+
+        label aggro_w3_success:
+            pov "Wow I succeeded"
+            $ aggro_w3_successes = aggro_w3_successes + 1
+            jump w3_complete
+            
+
+        label aggro_w3_failure:
+            pov "Wow I failed"
+            jump w3_complete
+        
+label w3_complete:
+    if puppy_w3_successes == 1:
+        if date_puppy_1_done == True:
+            if date_puppy_2_done == True:
+                jump date_puppy_3
+            else:
+                jump date_puppy_2
+        else:
+            jump date_puppy_1
+
+    if flirty_w3_successes == 1:
+        if date_flirty_1_done == True:
+            if date_flirty_2_done == True:
+                jump date_flirty_3
+            else:
+                jump date_flirty_2
+        else:
+            jump date_flirty_1
+
+    if suave_w3_successes == 1:
+        if date_suave_1_done == True:
+            if date_suave_2_done == True:
+                jump date_suave_3
+            else:
+                jump date_suave_2
+        else:
+            jump date_suave_1
+
+    if aggro_w3_successes == 1:
+        if date_aggro_1_done == True:
+            if date_aggro_2_done == True:
+                jump date_aggro_3
+            else:
+                jump date_aggro_2
+        else:
+            jump date_aggro_1
+    else:
+        jump failureweek3
+
+label failureweek3:
+    pov "I failed. No date."
+    if week == 1:
+        jump week2
+    if week == 2:
+        jump week3
+    if week == 3:
+        jump week4
+    if week == 4:
+        jump week5
+    if week == 5:
+        jump finalweek
+        
+label date3:
+
+    label date_puppy_3:
+        pov "Wow I'm on a 3rd date with puppy"
+        $ date_puppy_3_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+    
+
+    label date_flirty_3:
+        pov "Wow I'm on a 3rd date with suave"
+        $ date_suave_3_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+
+    label date_suave_3:
+        pov "Wow I'm on a 3rd date with suave"
+        $ date_suave_3_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+
+    label date_aggro_3:
+        pov "Wow I'm on a 3rd date with aggro"
+        $ date_aggro_3_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+
+##THIRD WEEK END
+
+
+##FOURTH WEEK BEGIN
+label week4:
+    $ week = 4
+    label w4_begin:
+        play music "BGM/event_choice.opus" fadein 0.5
+
+        menu:
+            "Where should I go w4?"
+
+            "The Soccer Field":
+                play music "BGM/puppy_theme.opus" fadein 1.0
+                jump puppy_w4_start
+
+            "Thunderground":
+                play music "BGM/flirty_theme.opus" fadein 1.0
+                jump flirty_w4_start
+
+            "The Library":
+                play music "BGM/suave_theme.opus" fadein 1.0
+                jump suave_w4_start
+
+            "The E-sports Lounge":
+                play music "BGM/aggro_theme.opus" fadein 1.0
+                jump aggro_w4_start
+
+
+    label puppy_w4_start:
+        scene bg soccer-Field
+
+        pov "Wow its the soccer field"
+
+        show puppy normal with easeinleft
+
+        puppy "HEYO"
+        puppy "I'm just a bit of a himbo bimbo but I am cute like a puppy."
+        puppy "I am actually exhuding golden retriever energy..."
+        show puppy blushing
+        puppy "Also I'm hypoallergenic"
+
+
+        jump puppy_w4_dialogue
+
+    label puppy_w4_dialogue:
+        label puppy_w4_d1:
+            
+            menu:
+                "What do I say d1?"
+
+                "Answer1":
+                    #is correct answer
+                    $ puppy_w4_points = puppy_w4_points + 1
+                    jump puppy_w4_d1_a1
+
+                "Answer2":
+                    jump puppy_w4_d1_a2
+
+                "Answer3":
+                    jump puppy_w4_d1_a3
+
+            label puppy_w4_d1_a1:
+                pov "puppy dialogue for week 4 dialogue 1 answer 1 "
+                jump puppy_w4_d2
+
+            label puppy_w4_d1_a2:
+                pov "puppy dialogue for week 4 dialogue 1 answer 2 "
+                jump puppy_w4_d2
+
+            label puppy_w4_d1_a3:
+                pov "puppy dialogue for week 4 dialogue 1 answer 3 "
+                jump puppy_w4_d2
+
+        label puppy_w4_d2:
+            
+            menu:
+                "What do I say d2?"
+
+                "Answer1":
+                    #Is correct answer
+                    $ puppy_w4_points = puppy_w4_points + 1
+                    jump puppy_w4_d2_a1
+
+                "Answer2":
+                    jump puppy_w4_d2_a2
+
+                "Answer3":
+                    jump puppy_w4_d2_a3
+
+            label puppy_w4_d2_a1:
+                pov "puppy dialogue for week 4 dialogue 2 answer 1 "
+                jump puppy_w4_d3
+
+            label puppy_w4_d2_a2:
+                pov "puppy dialogue for week 4 dialogue 2 answer 2 "
+                jump puppy_w4_d3
+
+            label puppy_w4_d2_a3:
+                pov "puppy dialogue for week 4 dialogue 2 answer 3 "
+                jump puppy_w4_d3
+
+        label puppy_w4_d3:
+            
+            menu:
+                "What do I say d3?"
+
+                "Answer1":
+                    #is correct answer
+                    $ puppy_w4_points = puppy_w4_points + 1
+                    jump puppy_w4_d3_a1
+
+                "Answer2":
+                    jump puppy_w4_d3_a2
+
+                "Answer3":
+                    jump puppy_w4_d3_a3
+
+
+            label puppy_w4_d3_a1:
+                pov "puppy dialogue for week 4 dialogue 3 answer 1 "
+                jump puppy_w4_d_complete
+
+            label puppy_w4_d3_a2:
+                pov "puppy dialogue for week 4 dialogue 3 answer 2 "
+                jump puppy_w4_d_complete
+
+            label puppy_w4_d3_a3:
+                pov "puppy dialogue for week 4 dialogue 3 answer 3 "
+                jump puppy_w4_d_complete
+
+        label puppy_w4_d_complete:
+            pov "Wow I'm done talking"
+            if puppy_w4_points >= 2:
+                jump puppy_w4_success
+            else:
+                jump puppy_w4_failure
+
+
+        label puppy_w4_success:
+            pov "Wow I succeeded"
+            $ puppy_w4_successes =+ 1
+            jump w4_complete
+            
+
+        label puppy_w4_failure:
+            pov "Wow I failed"
+            jump w4_complete
+    
+    label flirty_w4_start:
+        scene bg thunderground
+
+        pov "Wow its the Thunderground"
+
+        show flirty normal with easeinleft
+
+        flirty "HEYO"
+        flirty "I love you, but I'm just too flirty."
+        flirty "I can't be not flirty and I need someone to take my flirtiness out on."
+        
+        $ flirty_w4_points = 0
+
+        jump flirty_w4_dialogue
+
+    label flirty_w4_dialogue:
+        label flirty_w4_d1:
+
+            menu:
+                "What do I say d1?"
+
+                "Answer1":
+                    #is correct answer
+                    $ flirty_w4_points = flirty_w4_points + 1
+                    jump flirty_w4_d1_a1
+
+                "Answer2":
+                    jump flirty_w4_d1_a2
+
+                "Answer3":
+                    jump flirty_w4_d1_a3
+
+            label flirty_w4_d1_a1:
+                pov "flirty dialogue for week 4 dialogue 1 answer 1 "
+                jump flirty_w4_d2
+
+            label flirty_w4_d1_a2:
+                pov "flirty dialogue for week 4 dialogue 1 answer 2 "
+                jump flirty_w4_d2
+
+            label flirty_w4_d1_a3:
+                pov "flirty dialogue for week 4 dialogue 1 answer 3 "
+                jump flirty_w4_d2
+
+        label flirty_w4_d2:
+            
+            menu:
+                "What do I say d2?"
+
+                "Answer1":
+                    #Is correct answer
+                    $ flirty_w4_points = flirty_w4_points + 1
+                    jump flirty_w4_d2_a1
+
+                "Answer2":
+                    jump flirty_w4_d2_a2
+
+                "Answer3":
+                    jump flirty_w4_d2_a3
+
+            label flirty_w4_d2_a1:
+                pov "flirty dialogue for week 4 dialogue 2 answer 1 "
+                jump flirty_w4_d3
+
+            label flirty_w4_d2_a2:
+                pov "flirty dialogue for week 4 dialogue 2 answer 2 "
+                jump flirty_w4_d3
+
+            label flirty_w4_d2_a3:
+                pov "flirty dialogue for week 4 dialogue 2 answer 3 "
+                jump flirty_w4_d3
+
+
+
+        label flirty_w4_d3:
+            
+            menu:
+                "What do I say d3?"
+
+                "Answer1":
+                    #is correct answer
+                    $ flirty_w4_points = flirty_w4_points + 1
+                    jump flirty_w4_d3_a1
+
+                "Answer2":
+                    jump flirty_w4_d3_a2
+
+                "Answer3":
+                    jump flirty_w4_d3_a3
+
+
+            label flirty_w4_d3_a1:
+                pov "flirty dialogue for week 4 dialogue 3 answer 1 "
+                jump flirty_w4_d_complete
+
+            label flirty_w4_d3_a2:
+                pov "flirty dialogue for week 4 dialogue 3 answer 2 "
+                jump flirty_w4_d_complete
+
+            label flirty_w4_d3_a3:
+                pov "flirty dialogue for week 4 dialogue 3 answer 3 "
+                jump flirty_w4_d_complete
+
+        label flirty_w4_d_complete:
+            pov "Wow I'm done talking"
+            if flirty_w4_points >= 2:
+                jump flirty_w4_success
+            else:
+                jump flirty_w4_failure
+
+
+        label flirty_w4_success:
+            pov "Wow I succeeded"
+            $ flirty_w4_successes = flirty_w4_successes + 1
+            jump w4_complete
+            
+
+        label flirty_w4_failure:
+            pov "Wow I failed"
+            jump w4_complete
+        
+    label suave_w4_start:
+        scene bg library
+
+        pov "Wow its the Library"
+
+        show suave normal with easeinleft
+
+        suave "HEYO"
+        suave "I'm just so dang suave. Wow. I wish I was less suave."
+        suave "JK I love being suave. Smooch me please."
+
+        jump suave_w4_dialogue
+
+    label suave_w4_dialogue:
+        label suave_w4_d1:
+
+        menu:
+            "What do I say d1?"
+
+            "Answer1":
+                #is correct answer
+                $ suave_w4_points = suave_w4_points + 1
+                jump suave_w4_d1_a1
+
+            "Answer2":
+                jump suave_w4_d1_a2
+
+            "Answer3":
+                jump suave_w4_d1_a3
+
+        label suave_w4_d1_a1:
+            pov "suave dialogue for week 4 dialogue 1 answer 1 "
+            jump suave_w4_d2
+
+        label suave_w4_d1_a2:
+            pov "suave dialogue for week 4 dialogue  answer 2 "
+            jump suave_w4_d2
+
+        label suave_w4_d1_a3:
+            pov "suave dialogue for week 4 dialogue 1 answer 3 "
+            jump suave_w4_d2
+
+        label suave_w4_d2:
+            
+        menu:
+            "What do I say d2?"
+
+            "Answer1":
+                #Is correct answer
+                $ suave_w4_points = suave_w4_points + 1
+                jump suave_w4_d2_a1
+
+            "Answer2":
+                jump suave_w4_d2_a2
+
+            "Answer3":
+                jump suave_w4_d2_a3
+
+        label suave_w4_d2_a1:
+            pov "suave dialogue for week 4 dialogue 2 answer 1 "
+            jump suave_w4_d3
+
+        label suave_w4_d2_a2:
+            pov "suave dialogue for week 4 dialogue 2 answer 2 "
+            jump suave_w4_d3
+
+        label suave_w4_d2_a3:
+            pov "suave dialogue for week 4 dialogue 2 answer 3 "
+            jump suave_w4_d3
+
+
+
+        label suave_w4_d3:
+            
+        menu:
+            "What do I say d3?"
+
+            "Answer1":
+                #is correct answer
+                $ suave_w4_points = suave_w4_points + 1
+                jump suave_w4_d3_a1
+
+            "Answer2":
+                jump suave_w4_d3_a2
+
+            "Answer3":
+                jump suave_w4_d3_a3
+
+
+        label suave_w4_d3_a1:
+            pov "suave dialogue for week 4 dialogue 3 answer 1 "
+            jump suave_w4_d_complete
+
+        label suave_w4_d3_a2:
+            pov "suave dialogue for week 4 dialogue 3 answer 2 "
+            jump suave_w4_d_complete
+
+        label suave_w4_d3_a3:
+            pov "suave dialogue for week 4 dialogue 3 answer 3 "
+            jump suave_w4_d_complete
+
+        label suave_w4_d_complete:
+            pov "Wow I'm done talking"
+            if suave_w4_points >= 2:
+                jump suave_w4_success
+            else:
+                jump suave_w4_failure
+
+
+        label suave_w4_success:
+            pov "Wow I succeeded"
+            $ suave_w4_successes = suave_w4_successes + 1
+            jump w4_complete
+            
+
+        label suave_w4_failure:
+            pov "Wow I failed"
+            jump w4_complete
+        
+    label aggro_w4_start:
+        scene bg e-sports-lounge
+
+        pov "Wow its the E-sports lounge"
+
+        show aggro normal with easeinleft
+
+        aggro "HEYO"
+        aggro "I'm a bad boy, owo"
+        aggro "Date me and you'll find out how bad boy I am."
+        jump aggro_w4_dialogue
+
+    label aggro_w4_dialogue:
+        label aggro_w4_d1:
+            
+        menu:
+            "What do I say d1?"
+
+            "Answer1":
+                #is correct answer
+                $ aggro_w4_points = aggro_w4_points + 1
+                jump aggro_w4_d1_a1
+
+            "Answer2":
+                jump aggro_w4_d1_a2
+
+            "Answer3":
+                jump aggro_w4_d1_a3
+
+        label aggro_w4_d1_a1:
+            pov "aggro dialogue for week 4 dialogue 1 answer 1 "
+            jump aggro_w4_d2
+
+        label aggro_w4_d1_a2:
+            pov "aggro dialogue for week 4 dialogue 1 answer 2 "
+            jump aggro_w4_d2
+
+        label aggro_w4_d1_a3:
+            pov "aggro dialogue for week 4 dialogue 1 answer 3 "
+            jump aggro_w4_d2
+
+        label aggro_w4_d2:
+            
+        menu:
+            "What do I say d2?"
+
+            "Answer1":
+                #Is correct answer
+                $ aggro_w4_points = aggro_w4_points + 1
+                jump aggro_w4_d2_a1
+
+            "Answer2":
+                jump aggro_w4_d2_a2
+
+            "Answer3":
+                jump aggro_w4_d2_a3
+
+        label aggro_w4_d2_a1:
+            pov "aggro dialogue for week 4 dialogue 2 answer 1 "
+            jump aggro_w4_d3
+
+        label aggro_w4_d2_a2:
+            pov "aggro dialogue for week 4 dialogue 2 answer 2 "
+            jump aggro_w4_d3
+
+        label aggro_w4_d2_a3:
+            pov "aggro dialogue for week 4 dialogue 2 answer 3 "
+            jump aggro_w4_d3
+
+
+
+        label aggro_w4_d3:
+            
+        menu:
+            "What do I say d3?"
+
+            "Answer1":
+                #is correct answer
+                $ aggro_w4_points = aggro_w4_points + 1
+                jump aggro_w4_d3_a1
+
+            "Answer2":
+                jump aggro_w4_d3_a2
+
+            "Answer3":
+                jump aggro_w4_d3_a3
+
+
+        label aggro_w4_d3_a1:
+            pov "aggro dialogue for week 4 dialogue 3 answer 1 "
+            jump aggro_w4_d_complete
+
+        label aggro_w4_d3_a2:
+            pov "aggro dialogue for week 4 dialogue 3 answer 2 "
+            jump aggro_w4_d_complete
+
+        label aggro_w4_d3_a3:
+            pov "aggro dialogue for week 4 dialogue 3 answer 3 "
+            jump aggro_w4_d_complete
+
+        label aggro_w4_d_complete:
+            pov "Wow I'm done talking"
+            if aggro_w4_points >= 2:
+                jump aggro_w4_success
+            else:
+                jump aggro_w4_failure
+
+
+        label aggro_w4_success:
+            pov "Wow I succeeded"
+            $ aggro_w4_successes = aggro_w4_successes + 1
+            jump w4_complete
+            
+
+        label aggro_w4_failure:
+            pov "Wow I failed"
+            jump w4_complete
+
+label w4_complete:
+    if puppy_w4_successes == 1:
+        if date_puppy_1_done == True:
+            if date_puppy_2_done == True:
+                if date_puppy_3_done == True:
+                    jump date_puppy_4
+                else:
+                    jump date_puppy_3
+            else:
+                jump date_puppy_2
+        else:
+            jump date_puppy_1
+
+    if flirty_w4_successes == 1:
+        if date_flirty_1_done == True:
+            if date_flirty_2_done == True:
+                if date_flirty_3_done == True:
+                    jump date_flirty_4
+                else:
+                    jump date_flirty_3
+            else:
+                jump date_flirty_2
+        else:
+            jump date_flirty_1
+
+    if suave_w4_successes == 1:
+        if date_suave_1_done == True:
+            if date_suave_2_done == True:
+                if date_suave_3_done == True:
+                    jump date_suave_4
+                else:
+                    jump date_suave_3
+            else:
+                jump date_suave_2
+        else:
+            jump date_suave_1
+
+    if aggro_w4_successes == 1:
+        if date_aggro_1_done == True:
+            if date_aggro_2_done == True:
+                if date_aggro_3_done == True:
+                    jump date_aggro_4
+                else:
+                    jump date_aggro_3
+            else:
+                jump date_aggro_2
+        else:
+            jump date_aggro_1
+
+    else: 
+        jump failureweek4
+
+label failureweek4:
+    pov "I failed. No date."
+    if week == 1:
+        jump week2
+    if week == 2:
+        jump week3
+    if week == 3:
+        jump week4
+    if week == 4:
+        jump week5
+    if week == 5:
+        jump finalweek
+        
+label date4:
+
+    label date_puppy_4:
+        pov "Wow I'm on a 4th date with puppy"
+        $ date_puppy_4_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+    
+
+    label date_flirty_4:
+        pov "Wow I'm on a 4th date with suave"
+        $ date_suave_4_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+
+    label date_suave_4:
+        pov "Wow I'm on a 4th date with suave"
+        $ date_suave_4_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+
+    label date_aggro_4:
+        pov "Wow I'm on a 4th date with aggro"
+        $ date_aggro_4_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+
+##FOURTH WEEK END
+
+##FIFTH WEEK BEGIN
+label week5:
+    $ week = 5
+    label w5_begin:
+        play music "BGM/event_choice.opus" fadein 0.5
+
+        menu:
+            "Where should I go w5?"
+
+            "The Soccer Field":
+                play music "BGM/puppy_theme.opus" fadein 1.0
+                jump puppy_w5_start
+
+            "Thunderground":
+                play music "BGM/flirty_theme.opus" fadein 1.0                
+                jump flirty_w5_start
+
+            "The Library":
+                play music "BGM/suave_theme.opus" fadein 1.0
+                jump suave_w5_start
+
+            "The E-sports Lounge":
+                play music "BGM/aggro_theme.opus" fadein 1.0
+                jump aggro_w5_start
+
+                
+    label puppy_w5_start:
+        scene bg soccer-Field
+
+        pov "Wow its the soccer field"
+
+        show puppy normal with easeinleft
+
+        puppy "HEYO"
+        puppy "I'm just a bit of a himbo bimbo but I am cute like a puppy."
+        puppy "I am actually exhuding golden retriever energy..."
+        show puppy blushing
+        puppy "Also I'm hypoallergenic"
+
+
+        jump puppy_w5_dialogue
+
+    label puppy_w5_dialogue:
+        label puppy_w5_d1:
+            
+            menu:
+                "What do I say d1?"
+
+                "Answer1":
+                    #is correct answer
+                    $ puppy_w5_points = puppy_w5_points + 1
+                    jump puppy_w5_d1_a1
+
+                "Answer2":
+                    jump puppy_w5_d1_a2
+
+                "Answer3":
+                    jump puppy_w5_d1_a3
+
+            label puppy_w5_d1_a1:
+                pov "puppy dialogue for week 5 dialogue 1 answer 1 "
+                jump puppy_w5_d2
+
+            label puppy_w5_d1_a2:
+                pov "puppy dialogue for week 5 dialogue 1 answer 2 "
+                jump puppy_w5_d2
+
+            label puppy_w5_d1_a3:
+                pov "puppy dialogue for week 5 dialogue 1 answer 3 "
+                jump puppy_w5_d2
+
+        label puppy_w5_d2:
+            
+            menu:
+                "What do I say d2?"
+
+                "Answer1":
+                    #Is correct answer
+                    $ puppy_w5_points = puppy_w5_points + 1
+                    jump puppy_w5_d2_a1
+
+                "Answer2":
+                    jump puppy_w5_d2_a2
+
+                "Answer3":
+                    jump puppy_w5_d2_a3
+
+            label puppy_w5_d2_a1:
+                pov "puppy dialogue for week 5 dialogue 2 answer 1 "
+                jump puppy_w5_d3
+
+            label puppy_w5_d2_a2:
+                pov "puppy dialogue for week 5 dialogue 2 answer 2 "
+                jump puppy_w5_d3
+
+            label puppy_w5_d2_a3:
+                pov "puppy dialogue for week 5 dialogue 2 answer 3 "
+                jump puppy_w5_d3
+
+        label puppy_w5_d3:
+            
+            menu:
+                "What do I say d3?"
+
+                "Answer1":
+                    #is correct answer
+                    $ puppy_w5_points = puppy_w5_points + 1
+                    jump puppy_w5_d3_a1
+
+                "Answer2":
+                    jump puppy_w5_d3_a2
+
+                "Answer3":
+                    jump puppy_w5_d3_a3
+
+
+            label puppy_w5_d3_a1:
+                pov "puppy dialogue for week 5 dialogue 3 answer 1 "
+                jump puppy_w5_d_complete
+
+            label puppy_w5_d3_a2:
+                pov "puppy dialogue for week 5 dialogue 3 answer 2 "
+                jump puppy_w5_d_complete
+
+            label puppy_w5_d3_a3:
+                pov "puppy dialogue for week 5 dialogue 3 answer 3 "
+                jump puppy_w5_d_complete
+
+        label puppy_w5_d_complete:
+            pov "Wow I'm done talking"
+            if puppy_w5_points >= 2:
+                jump puppy_w5_success
+            else:
+                jump puppy_w5_failure
+
+
+        label puppy_w5_success:
+            pov "Wow I succeeded"
+            $ puppy_w5_successes =+ 1
+            jump w5_complete
+            
+
+        label puppy_w5_failure:
+            pov "Wow I failed"
+            jump w5_complete
+    
+    label flirty_w5_start:
+        scene bg thunderground
+
+        pov "Wow its the Thunderground"
+
+        show flirty normal with easeinleft
+
+        flirty "HEYO"
+        flirty "I love you, but I'm just too flirty."
+        flirty "I can't be not flirty and I need someone to take my flirtiness out on."
+        
+        $ flirty_w5_points = 0
+
+        jump flirty_w5_dialogue
+
+    label flirty_w5_dialogue:
+        label flirty_w5_d1:
+
+            menu:
+                "What do I say d1?"
+
+                "Answer1":
+                    #is correct answer
+                    $ flirty_w5_points = flirty_w5_points + 1
+                    jump flirty_w5_d1_a1
+
+                "Answer2":
+                    jump flirty_w5_d1_a2
+
+                "Answer3":
+                    jump flirty_w5_d1_a3
+
+            label flirty_w5_d1_a1:
+                pov "flirty dialogue for week 5 dialogue 1 answer 1 "
+                jump flirty_w5_d2
+
+            label flirty_w5_d1_a2:
+                pov "flirty dialogue for week 5 dialogue 1 answer 2 "
+                jump flirty_w5_d2
+
+            label flirty_w5_d1_a3:
+                pov "flirty dialogue for week 5 dialogue 1 answer 3 "
+                jump flirty_w5_d2
+
+        label flirty_w5_d2:
+            
+            menu:
+                "What do I say d2?"
+
+                "Answer1":
+                    #Is correct answer
+                    $ flirty_w5_points = flirty_w5_points + 1
+                    jump flirty_w5_d2_a1
+
+                "Answer2":
+                    jump flirty_w5_d2_a2
+
+                "Answer3":
+                    jump flirty_w5_d2_a3
+
+            label flirty_w5_d2_a1:
+                pov "flirty dialogue for week 5 dialogue 2 answer 1 "
+                jump flirty_w5_d3
+
+            label flirty_w5_d2_a2:
+                pov "flirty dialogue for week 5 dialogue 2 answer 2 "
+                jump flirty_w5_d3
+
+            label flirty_w5_d2_a3:
+                pov "flirty dialogue for week 5 dialogue 2 answer 3 "
+                jump flirty_w5_d3
+
+
+
+        label flirty_w5_d3:
+            
+            menu:
+                "What do I say d3?"
+
+                "Answer1":
+                    #is correct answer
+                    $ flirty_w5_points = flirty_w5_points + 1
+                    jump flirty_w5_d3_a1
+
+                "Answer2":
+                    jump flirty_w5_d3_a2
+
+                "Answer3":
+                    jump flirty_w5_d3_a3
+
+
+            label flirty_w5_d3_a1:
+                pov "flirty dialogue for week 5 dialogue 3 answer 1 "
+                jump flirty_w5_d_complete
+
+            label flirty_w5_d3_a2:
+                pov "flirty dialogue for week 5 dialogue 3 answer 2 "
+                jump flirty_w5_d_complete
+
+            label flirty_w5_d3_a3:
+                pov "flirty dialogue for week 5 dialogue 3 answer 3 "
+                jump flirty_w5_d_complete
+
+        label flirty_w5_d_complete:
+            pov "Wow I'm done talking"
+            if flirty_w5_points >= 2:
+                jump flirty_w5_success
+            else:
+                jump flirty_w5_failure
+
+
+        label flirty_w5_success:
+            pov "Wow I succeeded"
+            $ flirty_w5_successes = flirty_w5_successes + 1
+            jump w5_complete
+            
+
+        label flirty_w5_failure:
+            pov "Wow I failed"
+            jump w5_complete
+        
+    label suave_w5_start:
+        scene bg library
+
+        pov "Wow its the Library"
+
+        show suave normal with easeinleft
+
+        suave "HEYO"
+        suave "I'm just so dang suave. Wow. I wish I was less suave."
+        suave "JK I love being suave. Smooch me please."
+
+        jump suave_w5_dialogue
+
+    label suave_w5_dialogue:
+        label suave_w5_d1:
+
+        menu:
+            "What do I say d1?"
+
+            "Answer1":
+                #is correct answer
+                $ suave_w5_points = suave_w5_points + 1
+                jump suave_w5_d1_a1
+
+            "Answer2":
+                jump suave_w5_d1_a2
+
+            "Answer3":
+                jump suave_w5_d1_a3
+
+        label suave_w5_d1_a1:
+            pov "suave dialogue for week 5 dialogue 1 answer 1 "
+            jump suave_w5_d2
+
+        label suave_w5_d1_a2:
+            pov "suave dialogue for week 5 dialogue  answer 2 "
+            jump suave_w5_d2
+
+        label suave_w5_d1_a3:
+            pov "suave dialogue for week 5 dialogue 1 answer 3 "
+            jump suave_w5_d2
+
+        label suave_w5_d2:
+            
+        menu:
+            "What do I say d2?"
+
+            "Answer1":
+                #Is correct answer
+                $ suave_w5_points = suave_w5_points + 1
+                jump suave_w5_d2_a1
+
+            "Answer2":
+                jump suave_w5_d2_a2
+
+            "Answer3":
+                jump suave_w5_d2_a3
+
+        label suave_w5_d2_a1:
+            pov "suave dialogue for week 5 dialogue 2 answer 1 "
+            jump suave_w5_d3
+
+        label suave_w5_d2_a2:
+            pov "suave dialogue for week 5 dialogue 2 answer 2 "
+            jump suave_w5_d3
+
+        label suave_w5_d2_a3:
+            pov "suave dialogue for week 5 dialogue 2 answer 3 "
+            jump suave_w5_d3
+
+
+
+        label suave_w5_d3:
+            
+        menu:
+            "What do I say d3?"
+
+            "Answer1":
+                #is correct answer
+                $ suave_w5_points = suave_w5_points + 1
+                jump suave_w5_d3_a1
+
+            "Answer2":
+                jump suave_w5_d3_a2
+
+            "Answer3":
+                jump suave_w5_d3_a3
+
+
+        label suave_w5_d3_a1:
+            pov "suave dialogue for week 5 dialogue 3 answer 1 "
+            jump suave_w5_d_complete
+
+        label suave_w5_d3_a2:
+            pov "suave dialogue for week 5 dialogue 3 answer 2 "
+            jump suave_w5_d_complete
+
+        label suave_w5_d3_a3:
+            pov "suave dialogue for week 5 dialogue 3 answer 3 "
+            jump suave_w5_d_complete
+
+        label suave_w5_d_complete:
+            pov "Wow I'm done talking"
+            if suave_w5_points >= 2:
+                jump suave_w5_success
+            else:
+                jump suave_w5_failure
+
+
+        label suave_w5_success:
+            pov "Wow I succeeded"
+            $ suave_w5_successes = suave_w5_successes + 1
+            jump w5_complete
+            
+
+        label suave_w5_failure:
+            pov "Wow I failed"
+            jump w5_complete
+        
+    label aggro_w5_start:
+        scene bg e-sports-lounge
+
+        pov "Wow its the E-sports lounge"
+
+        show aggro normal with easeinleft
+
+        aggro "HEYO"
+        aggro "I'm a bad boy, owo"
+        aggro "Date me and you'll find out how bad boy I am."
+        jump aggro_w5_dialogue
+
+    label aggro_w5_dialogue:
+        label aggro_w5_d1:
+            
+        menu:
+            "What do I say d1?"
+
+            "Answer1":
+                #is correct answer
+                $ aggro_w5_points = aggro_w5_points + 1
+                jump aggro_w5_d1_a1
+
+            "Answer2":
+                jump aggro_w5_d1_a2
+
+            "Answer3":
+                jump aggro_w5_d1_a3
+
+        label aggro_w5_d1_a1:
+            pov "aggro dialogue for week 5 dialogue 1 answer 1 "
+            jump aggro_w5_d2
+
+        label aggro_w5_d1_a2:
+            pov "aggro dialogue for week 5 dialogue 1 answer 2 "
+            jump aggro_w5_d2
+
+        label aggro_w5_d1_a3:
+            pov "aggro dialogue for week 5 dialogue 1 answer 3 "
+            jump aggro_w5_d2
+
+        label aggro_w5_d2:
+            
+        menu:
+            "What do I say d2?"
+
+            "Answer1":
+                #Is correct answer
+                $ aggro_w5_points = aggro_w5_points + 1
+                jump aggro_w5_d2_a1
+
+            "Answer2":
+                jump aggro_w5_d2_a2
+
+            "Answer3":
+                jump aggro_w5_d2_a3
+
+        label aggro_w5_d2_a1:
+            pov "aggro dialogue for week 5 dialogue 2 answer 1 "
+            jump aggro_w5_d3
+
+        label aggro_w5_d2_a2:
+            pov "aggro dialogue for week 5 dialogue 2 answer 2 "
+            jump aggro_w5_d3
+
+        label aggro_w5_d2_a3:
+            pov "aggro dialogue for week 5 dialogue 2 answer 3 "
+            jump aggro_w5_d3
+
+
+
+        label aggro_w5_d3:
+            
+        menu:
+            "What do I say d3?"
+
+            "Answer1":
+                #is correct answer
+                $ aggro_w5_points = aggro_w5_points + 1
+                jump aggro_w5_d3_a1
+
+            "Answer2":
+                jump aggro_w5_d3_a2
+
+            "Answer3":
+                jump aggro_w5_d3_a3
+
+
+        label aggro_w5_d3_a1:
+            pov "aggro dialogue for week 5 dialogue 3 answer 1 "
+            jump aggro_w5_d_complete
+
+        label aggro_w5_d3_a2:
+            pov "aggro dialogue for week 5 dialogue 3 answer 2 "
+            jump aggro_w5_d_complete
+
+        label aggro_w5_d3_a3:
+            pov "aggro dialogue for week 5 dialogue 3 answer 3 "
+            jump aggro_w5_d_complete
+
+        label aggro_w5_d_complete:
+            pov "Wow I'm done talking"
+            if aggro_w5_points >= 2:
+                jump aggro_w5_success
+            else:
+                jump aggro_w5_failure
+
+
+        label aggro_w5_success:
+            pov "Wow I succeeded"
+            $ aggro_w5_successes = aggro_w5_successes + 1
+            jump w5_complete
+            
+
+        label aggro_w5_failure:
+            pov "Wow I failed"
+            jump w5_complete
+
+label w5_complete:
+    if puppy_w5_successes == 1:
+        if date_puppy_1_done == True:
+            if date_puppy_2_done == True:
+                if date_puppy_3_done == True:
+                    if date_puppy_4_done == True:
+                        jump date_puppy_5
+                    else:
+                        jump date_puppy_4
+                else:
+                    jump date_puppy_3
+            else:
+                jump date_puppy_2
+        else:
+            jump date_puppy_1
+
+    if flirty_w5_successes == 1:
+        if date_flirty_1_done == True:
+            if date_flirty_2_done == True:
+                if date_flirty_3_done == True:
+                    if date_flirty_4_done == True:
+                        jump date_flirty_5
+                    else:
+                        jump date_flirty_4
+                else:
+                    jump date_flirty_3
+            else:
+                jump date_flirty_2
+        else:
+            jump date_flirty_1
+
+    if suave_w5_successes == 1:
+        if date_suave_1_done == True:
+            if date_suave_2_done == True:
+                if date_suave_3_done == True:
+                    if date_suave_4_done == True:
+                        jump date_suave_5
+                    else:
+                        jump date_suave_4
+                else:
+                    jump date_suave_3
+            else:
+                jump date_suave_2
+        else:
+            jump date_suave_1
+
+    if aggro_w5_successes == 1:
+        if date_aggro_1_done == True:
+            if date_aggro_2_done == True:
+                if date_aggro_3_done == True:
+                    if date_aggro_4_done == True:
+                        jump date_aggro_5
+                    else:
+                        jump date_aggro_4
+                else:
+                    jump date_aggro_3
+            else:
+                jump date_aggro_2
+        else:
+            jump date_aggro_1
+    else:
+        jump failureweek5
+
+label failureweek5:
+    pov "I failed. No date."
+    if week == 1:
+        jump week2
+    if week == 2:
+        jump week3
+    if week == 3:
+        jump week4
+    if week == 4:
+        jump week5
+    if week == 5:
+        jump finalweek
+        
+label date5:
+
+    label date_puppy_5:
+        pov "Wow I'm on a 5th date with puppy"
+        $ date_puppy_5_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+    
+
+    label date_flirty_5:
+        pov "Wow I'm on a 5th date with suave"
+        $ date_suave_5_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+
+    label date_suave_5:
+        pov "Wow I'm on a 5th date with suave"
+        $ date_suave_5_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+
+    label date_aggro_5:
+        pov "Wow I'm on a 5th date with aggro"
+        $ date_aggro_5_done = True
+        if week == 1:
+            jump week2
+        if week == 2:
+            jump week3
+        if week == 3:
+            jump week4
+        if week == 4:
+            jump week5
+        if week == 5:
+            jump finalweek
+
+label date_puppy_final:
+    pov "Helo"
+    jump finalweek
+
+
+##FIFTH WEEK END
+
+
+#FINAL WEEK BEGIN
+label finalweek:
+    if date_puppy_1_done == True:
+        $ dates_puppy_completed = dates_puppy_completed + 1
+    if date_puppy_2_done == True:
+        $ dates_puppy_completed = dates_puppy_completed + 1
+    if date_puppy_3_done == True:
+        $ dates_puppy_completed = dates_puppy_completed + 1
+    if date_puppy_4_done == True:
+        $ dates_puppy_completed = dates_puppy_completed + 1
+    if date_puppy_5_done == True:
+        $ dates_puppy_completed = dates_puppy_completed + 1
+
+    if date_suave_1_done == True:
+        $ dates_suave_completed = dates_suave_completed + 1
+    if date_suave_2_done == True:
+        $ dates_suave_completed = dates_suave_completed + 1
+    if date_suave_3_done == True:
+        $ dates_suave_completed = dates_suave_completed + 1
+    if date_suave_4_done == True:
+        $ dates_suave_completed = dates_suave_completed + 1
+    if date_suave_5_done == True:
+        $ dates_suave_completed = dates_suave_completed + 1
+
+    if date_flirty_1_done == True:
+        $ dates_flirty_completed = dates_flirty_completed + 1
+    if date_flirty_2_done == True:
+        $ dates_flirty_completed = dates_flirty_completed + 1
+    if date_flirty_3_done == True:
+        $ dates_flirty_completed = dates_flirty_completed + 1
+    if date_flirty_4_done == True:
+        $ dates_flirty_completed = dates_flirty_completed + 1
+    if date_flirty_5_done == True:
+        $ dates_flirty_completed = dates_flirty_completed + 1
+
+    if date_aggro_1_done == True:
+        $ dates_aggro_completed = dates_aggro_completed + 1
+    if date_aggro_2_done == True:
+        $ dates_aggro_completed = dates_aggro_completed + 1
+    if date_aggro_3_done == True:
+        $ dates_aggro_completed = dates_aggro_completed + 1
+    if date_aggro_4_done == True:
+        $ dates_aggro_completed = dates_aggro_completed + 1
+    if date_aggro_5_done == True:
+        $ dates_aggro_completed = dates_aggro_completed + 1
+
+
+    
+    if dates_puppy_completed == 5:
+        jump perfect_puppy_ending
+    if dates_puppy_completed == 4:
+        jump puppy_ending
+
+    if dates_flirty_completed == 5:
+        jump perfect_flirty_ending
+    if dates_flirty_completed == 4:
+        jump flirty_ending
+
+    if dates_suave_completed == 5:
+        jump perfect_suave_ending
+    if dates_suave_completed == 4:
+        jump suave_ending
+
+    if dates_aggro_completed == 5:
+        jump perfect_aggro_ending
+    if dates_aggro_completed == 4:
+        jump aggro_ending
+    
+    if taco_bell_points >= 8:
+        jump taco_bell_ending
+        
+    else:
+        jump failure_ending
+
+
+label failure_ending:
+    stop music fadeout 1.0  
+    scene black
+    pov "Oh no I failed"
+    show larkin angry with dissolve
+    larkin "[pov], you are a worthless disgrace"
+    hide larkin with dissolve
+    with Pause(2)
+    
+    show puppy normal with dissolve
+
+    puppy "I trusted you, [pov]"
+    hide puppy with dissolve
+
+    with Pause(2)
+    show aggro normal with dissolve
+    
+    aggro "You BITCH"
+
+label taco_bell_ending:
+    scene black
+    pov "OMG I GET TO MAKE OUT WITH SAMN"
+    $ get_achievement("Sam", trans=achievement_transform)
+    achieve sam
+    galleryunlock sam
+
+label perfect_puppy_ending:
+    $ get_achievement("PuppyPerfect", trans=achievement_transform)
+    achieve puppyperfect
+    galleryunlock 1placeholder
+    scene black
+    pov "Puppy is my new hubby. He is perfectly in love with me."
+
+
+label perfect_flirty_ending:
+    $ get_achievement("FlirtyPerfect", trans=achievement_transform)
+    achieve flirtyperfect
+    galleryunlock 2placeholder
+    scene black
+    pov "Flirty is my new hubby. He is perfectly in love with me."
+
+
+label perfect_suave_ending:
+    $ get_achievement("SuavePerfect", trans=achievement_transform)
+    achieve suaveperfect
+    galleryunlock 3placeholder
+    scene black
+    pov "Suave is my new hubby. He is perfectly in love with me."
+
+
+label perfect_aggro_ending:
+    scene black
+    $ get_achievement("AggroPerfect", trans=achievement_transform)
+    achieve aggroperfect
+    galleryunlock 4placeholder
+    pov "Aggro is my new hubby. He is perfectly in love with me."
+
+
+label puppy_ending:
+    scene black
+    pov "Well, puppy is in love with me, its not perfect, but its good."
+    jump end
+
+label flirty_ending:
+    scene black
+    pov "Well, flirty is in love with me, its not perfect, but its good."
+    jump end
+
+label suave_ending:
+    scene black
+    pov "Well, suave is in love with me, its not perfect, but its good."
+    jump end
+
+label aggro_ending:
+    scene black
+    pov "Well, aggro is in love with me, its not perfect, but its good."
+    jump end

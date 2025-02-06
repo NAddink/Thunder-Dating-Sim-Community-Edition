@@ -1,0 +1,22 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/Base/options.rpy", line 16, in script
+    define config.mouse['default'] = [ ( "gui/cursor-32.png", 0, 0) ]
+TypeError: 'NoneType' object does not support item assignment
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/Base/options.rpy", line 16, in script
+    define config.mouse['default'] = [ ( "gui/cursor-32.png", 0, 0) ]
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\ast.py", line 2219, in execute
+    self.set()
+  File "C:\Users\14804\Desktop\Renpy\GCU SIM\renpy-8.1.3-sdk\renpy\ast.py", line 2257, in set
+    base[key] = new
+TypeError: 'NoneType' object does not support item assignment
+
+Windows-10-10.0.26100 AMD64
+Ren'Py 8.2.1.24030407
+Thunder Dating Sim 1.0
+Wed Feb  5 21:21:33 2025
