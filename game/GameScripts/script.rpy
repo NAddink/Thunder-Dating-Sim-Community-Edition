@@ -200,10 +200,11 @@ label start:
     puppy "I am thunder!"
     puppy "The GCU mascot!"
     show puppy normal
+    puppy "Hello {0}sir{/0}{1}ma'am{/1}{2}lovely{/2}!"
     puppy "Wanna smooch?"
     show aggro normal at right 
     with moveinright
-    aggro "[theyre!t!c] mine"
+    aggro "[theyre!c] mine"
     show flirty normal at left
 
     pov "Ope-"
