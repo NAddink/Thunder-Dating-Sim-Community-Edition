@@ -14,3 +14,7 @@ game/saves/navigation.json
 game/saves/persistent
 /game/cache
 log.txt
+/game/saves
+/game/saves
+/game/cache
+*.txt

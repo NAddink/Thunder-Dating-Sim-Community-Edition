@@ -37,6 +37,7 @@ label defined:
 
 label defaults:
 
+
     default date_puppy_1_done = False
     default date_puppy_2_done = False
     default date_puppy_3_done = False
@@ -113,20 +114,20 @@ label defaults:
     default current_location = "Class"
 
 
-# label blinking_animations:
-#     image puppy normal:
-#         choice (3.0):
-#             "puppy normal.webp"
-#         choice:
-#             "puppy normal closed.webp"
-#             pause 0.1
-#             "puppy normal.webp"
-#             pause 0.1
-#             "puppy normal closed.webp"
-#             pause 0.1
-#             "puppy normal.webp"
-#         pause 1.0
-#         repeat
+label blinking_animations:
+    image puppy normal:
+        choice (3.0):
+            "thunder.png"
+        choice:
+            "thunder-blink.png"
+            pause 0.1
+            "thunder.png"
+            pause 0.1
+            "thunder-blink.png"
+            pause 0.1
+            "thunder.png"
+        pause 1.0
+        repeat
 
 #     image flirty normal:
 #         choice (3.0):
@@ -179,6 +180,9 @@ label start:
 
     #asking for a name
     $ povname = renpy.input("What is your name?", length = 32)
+
+   
+
     call pronounselection from _call_pronounselection
     #beginnning of the story
     pov "Wow, GCU orientation!"
@@ -194,8 +198,11 @@ label start:
     pov "..."
     pov "Who's That?"
 
+
+        
+
     show puppy normal with easeinleft
-    puppy "Hello there minnow."
+    puppy "Hello there pookums."
     puppy "Welcome to orientation."
     puppy "I am thunder!"
     puppy "The GCU mascot!"

@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/GameScripts/script.rpy", line 225: expected statement.
-    galleryunlock blarkin
-                         ^
+File "game/GameScripts/script.rpy", line 180: Line is indented, but the preceding ATL statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    ypos -600
+    ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Wed Feb  5 21:13:13 2025
+Sat Feb  8 01:24:09 2025
